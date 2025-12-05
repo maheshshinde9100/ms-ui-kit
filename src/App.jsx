@@ -1,44 +1,12 @@
 import Button from "./components/Button/Button";
+import TestingButton from "./testing/TestingButton";
+import TestingCard from "./testing/TestingCard";
 
 function App() {
   return (
     <>
-      <div className="p-2">
-        <Button variant="primary" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
-      <div className="p-2">
-        <Button variant="secondary" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
-      <div className="p-2">
-        <Button variant="danger" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
-
-      <div className="p-2">
-      <Button variant="danger" loading>
-        Loading Button
-      </Button>
-    </div>
-          <div className="p-2">
-        <Button variant="success" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
-          <div className="p-2">
-        <Button variant="warning" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
-          <div className="p-2">
-        <Button variant="outline" onClick={() => alert("Clicked!")}>
-          Click Me
-        </Button>
-      </div>
+    <TestingButton/>
+    <TestingCard/>
     </>
   );
 }
