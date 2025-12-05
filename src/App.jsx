@@ -24,6 +24,21 @@ function App() {
         Loading Button
       </Button>
     </div>
+          <div className="p-2">
+        <Button variant="success" onClick={() => alert("Clicked!")}>
+          Click Me
+        </Button>
+      </div>
+          <div className="p-2">
+        <Button variant="warning" onClick={() => alert("Clicked!")}>
+          Click Me
+        </Button>
+      </div>
+          <div className="p-2">
+        <Button variant="outline" onClick={() => alert("Clicked!")}>
+          Click Me
+        </Button>
+      </div>
     </>
   );
 }
