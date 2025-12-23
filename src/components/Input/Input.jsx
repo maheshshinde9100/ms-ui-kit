@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 /**
  * ms-ui-kit Input Component
@@ -17,7 +17,8 @@ const Input = ({
     fullWidth = true,
     ...props
 }) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+    const generatedId = useId();
+    const inputId = id || generatedId;
 
     // Size configurations
     const sizes = {
