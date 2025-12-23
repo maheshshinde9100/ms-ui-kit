@@ -1,13 +1,11 @@
-import Button from "./components/Button/Button";
-import TestingButton from "./testing/TestingButton";
-import TestingCard from "./testing/TestingCard";
+import React from 'react';
+import TestingUI from './testing/TestingUI';
 
 function App() {
   return (
-    <>
-    <TestingButton/>
-    <TestingCard/>
-    </>
+    <div className="dark:bg-gray-950 min-h-screen">
+      <TestingUI />
+    </div>
   );
 }
 
