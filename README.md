@@ -1,20 +1,80 @@
-# React + Vite
+# MS UI Kit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight and customizable React UI library with a set of accessible and reusable components to build modern web applications.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To install the package, run the following command in your terminal:
 
-## React Compiler
+```bash
+npm install ms-ui-kit
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Usage
 
-## Expanding the ESLint configuration
+To use the components, import them from the `ms-ui-kit` package:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+import { Button, Card } from 'ms-ui-kit';
 
+function App() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+      <Card>
+        <Card.Header>Card Title</Card.Header>
+        <Card.Body>
+          <p>This is the card body.</p>
+        </Card.Body>
+        <Card.Footer>Card Footer</Card.Footer>
+      </Card>
+    </div>
+  );
+}
+```
 
-##Test commit
-README.md
+## Components
+
+### Button
+
+A customizable button component with different variants and sizes.
+
+#### Props
+
+| Prop        | Type      | Default     | Description                                                  |
+|-------------|-----------|-------------|--------------------------------------------------------------|
+| `children`  | `node`    | `null`      | The content of the button.                                   |
+| `variant`   | `string`  | `'primary'` | The variant of the button.                                   |
+| `size`      | `string`  | `'md'`      | The size of the button.                                      |
+| `disabled`  | `boolean` | `false`     | Whether the button is disabled.                              |
+| `loading`   | `boolean` | `false`     | Whether the button is in a loading state.                    |
+| `fullWidth` | `boolean` | `false`     | Whether the button should take up the full width of its parent.|
+| `startIcon` | `node`    | `null`      | An icon to display at the start of the button.               |
+| `endIcon`   | `node`    | `null`      | An icon to display at the end of the button.                 |
+| `className` | `string`  | `''`        | Additional CSS classes to apply to the button.               |
+| `onClick`   | `func`    | `null`      | The function to call when the button is clicked.             |
+
+### Card
+
+A flexible card container with multiple variants and layouts.
+
+#### Props
+
+| Prop        | Type      | Default     | Description                                             |
+|-------------|-----------|-------------|---------------------------------------------------------|
+| `children`  | `node`    | `null`      | The content of the card.                                |
+| `variant`   | `string`  | `'default'` | The variant of the card.                                |
+| `elevated`  | `boolean` | `true`      | Whether the card has a shadow and elevation.            |
+| `bordered`  | `boolean` | `true`      | Whether the card has a border.                          |
+| `rounded`   | `boolean` | `true`      | Whether the card has rounded corners.                   |
+| `hoverable` | `boolean` | `false`     | Whether the card has a hover effect.                    |
+| `className` | `string`  | `''`        | Additional CSS classes to apply to the card.            |
+| `width`     | `string`  | `'auto'`    | The width of the card.                                  |
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request on our [GitHub repository](https://github.com/your-username/ms-ui-kit).
+
+## License
+
+This project is licensed under the MIT License.
