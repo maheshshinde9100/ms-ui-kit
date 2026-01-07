@@ -73,7 +73,7 @@ A flexible card container with multiple variants and layouts.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request on our [GitHub repository](https://github.com/your-username/ms-ui-kit).
+Contributions are welcome! Please open an issue or submit a pull request on our [GitHub repository]([https://github.com/your-username/ms-ui-kit](https://github.com/maheshshinde9100/ms-ui-kit)).
 
 ## License
 
