@@ -10,7 +10,7 @@ const TestingCard = () => (
         alt="Mountain landscape"
         height="lg"
         overlay={
-          <div className="text-white text-sm">Photo by John Doe</div>
+          <div className="text-white text-sm">Photo by Mahesh Shinde</div>
         }
       />
       

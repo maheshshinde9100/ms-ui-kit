@@ -26,7 +26,7 @@ const TestingUI = () => {
 
     const user = {
         name: 'Mahesh Shinde',
-        role: 'Lead Designer',
+        role: 'Developer',
         avatar: ''
     };
 
