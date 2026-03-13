@@ -1,26 +1,33 @@
 # MS UI Kit
 
-A lightweight and customizable React UI library with a set of accessible and reusable components to build modern web applications.
+**MS UI Kit** is a lightweight and customizable React UI component library designed to help developers quickly build modern web applications using reusable and accessible components.
 
-## Installation
+Built with **React, Vite, and TailwindCSS**, the library provides clean, modular UI components that are easy to integrate into any React project.
 
-To install the package, run the following command in your terminal:
+---
+
+## 📦 Installation
+
+Install the package from npm:
 
 ```bash
 npm install ms-ui-kit
 ```
 
-## Usage
+---
 
-To use the components, import them from the `ms-ui-kit` package:
+## 🚀 Quick Start
+
+Import the components you need from the library.
 
 ```jsx
-import { Button, Card } from 'ms-ui-kit';
+import { Button, Card } from "ms-ui-kit";
 
 function App() {
   return (
     <div>
-      <Button variant="primary">Click me</Button>
+      <Button variant="primary">Click Me</Button>
+
       <Card>
         <Card.Header>Card Title</Card.Header>
         <Card.Body>
@@ -31,50 +38,118 @@ function App() {
     </div>
   );
 }
+
+export default App;
 ```
 
-## Components
+---
 
-### Button
+## 🧩 Available Components
 
-A customizable button component with different variants and sizes.
+Currently included in **v0.1.0**:
 
-#### Props
+* Button
+* Card
+* Modal
+* Navbar
+* Input
+* Avatar
+* Badge
+* Spinner
+* Switch
+* Alert
+* Accordion
 
-| Prop        | Type      | Default     | Description                                                  |
-|-------------|-----------|-------------|--------------------------------------------------------------|
-| `children`  | `node`    | `null`      | The content of the button.                                   |
-| `variant`   | `string`  | `'primary'` | The variant of the button.                                   |
-| `size`      | `string`  | `'md'`      | The size of the button.                                      |
-| `disabled`  | `boolean` | `false`     | Whether the button is disabled.                              |
-| `loading`   | `boolean` | `false`     | Whether the button is in a loading state.                    |
-| `fullWidth` | `boolean` | `false`     | Whether the button should take up the full width of its parent.|
-| `startIcon` | `node`    | `null`      | An icon to display at the start of the button.               |
-| `endIcon`   | `node`    | `null`      | An icon to display at the end of the button.                 |
-| `className` | `string`  | `''`        | Additional CSS classes to apply to the button.               |
-| `onClick`   | `func`    | `null`      | The function to call when the button is clicked.             |
+More components will be added in future releases.
 
-### Card
+---
 
-A flexible card container with multiple variants and layouts.
+## 🎨 Button Component
 
-#### Props
+A flexible button component with support for variants, icons, loading states, and sizes.
 
-| Prop        | Type      | Default     | Description                                             |
-|-------------|-----------|-------------|---------------------------------------------------------|
-| `children`  | `node`    | `null`      | The content of the card.                                |
-| `variant`   | `string`  | `'default'` | The variant of the card.                                |
-| `elevated`  | `boolean` | `true`      | Whether the card has a shadow and elevation.            |
-| `bordered`  | `boolean` | `true`      | Whether the card has a border.                          |
-| `rounded`   | `boolean` | `true`      | Whether the card has rounded corners.                   |
-| `hoverable` | `boolean` | `false`     | Whether the card has a hover effect.                    |
-| `className` | `string`  | `''`        | Additional CSS classes to apply to the card.            |
-| `width`     | `string`  | `'auto'`    | The width of the card.                                  |
+### Props
 
-## Contributing
+| Prop        | Type     | Default   | Description          |
+| ----------- | -------- | --------- | -------------------- |
+| `children`  | node     | —         | Button content       |
+| `variant`   | string   | `primary` | Button style variant |
+| `size`      | string   | `md`      | Button size          |
+| `disabled`  | boolean  | `false`   | Disable button       |
+| `loading`   | boolean  | `false`   | Show loading state   |
+| `fullWidth` | boolean  | `false`   | Full width button    |
+| `startIcon` | node     | —         | Icon before text     |
+| `endIcon`   | node     | —         | Icon after text      |
+| `className` | string   | `""`      | Custom CSS classes   |
+| `onClick`   | function | —         | Click handler        |
 
-Contributions are welcome! Please open an issue or submit a pull request on our [GitHub repository]([https://github.com/your-username/ms-ui-kit](https://github.com/maheshshinde9100/ms-ui-kit)).
+---
 
-## License
+## 🧱 Card Component
 
-This project is licensed under the MIT License.
+A flexible container component used to display grouped content.
+
+### Props
+
+| Prop        | Type    | Default   | Description        |
+| ----------- | ------- | --------- | ------------------ |
+| `children`  | node    | —         | Card content       |
+| `variant`   | string  | `default` | Card style         |
+| `elevated`  | boolean | `true`    | Adds shadow        |
+| `bordered`  | boolean | `true`    | Adds border        |
+| `rounded`   | boolean | `true`    | Rounded corners    |
+| `hoverable` | boolean | `false`   | Hover animation    |
+| `className` | string  | `""`      | Custom CSS classes |
+| `width`     | string  | `auto`    | Card width         |
+
+---
+
+## 📈 Version
+
+Current version:
+
+```
+ms-ui-kit@0.1.0
+```
+
+This is the **initial release** containing core UI components.
+
+Future versions will introduce:
+
+* More UI components
+* Improved styling
+* Better accessibility
+* Performance optimizations
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve this library:
+
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
+
+GitHub Repository:
+
+https://github.com/maheshshinde9100/ms-ui-kit
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+**Mahesh Shinde**
+
+Computer Engineering Student | Full Stack Developer
+
+GitHub:
+https://github.com/maheshshinde9100
