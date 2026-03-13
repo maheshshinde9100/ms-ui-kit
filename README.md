@@ -59,6 +59,20 @@ Currently included in **v0.1.0**:
 * Switch
 * Alert
 * Accordion
+* Skeleton
+* Progress
+* Tabs
+* Tooltip
+* Breadcrumb
+* Pagination
+* Tag
+* Timeline
+* Rating
+* Stepper
+* EmptyState
+* Checkbox
+* Textarea
+* Dropdown
 
 More components will be added in future releases.
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from '../Avatar';
 
 /**
@@ -21,6 +22,24 @@ const Navbar = ({
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const navItems = links.map((link, index) => {
+        const isInternal = link.href.startsWith('/');
+        const commonClasses = "text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
+        
+        if (isInternal) {
+            return (
+                <Link key={index} to={link.href} className={commonClasses}>
+                    {link.label}
+                </Link>
+            );
+        }
+        return (
+            <a key={index} href={link.href} className={commonClasses} target="_blank" rel="noopener noreferrer">
+                {link.label}
+            </a>
+        );
+    });
+
     return (
         <nav
             className={`
@@ -33,26 +52,18 @@ const Navbar = ({
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-xl rotate-12 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                        <span className="text-white font-black rotate-[-12deg]">M</span>
+                <Link to="/" className="flex items-center gap-2 group">
+                    <div className="w-8 h-8 bg-blue-600 rounded-xl rotate-12 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-0 transition-transform">
+                        <span className="text-white font-black rotate-[-12deg] group-hover:rotate-0 transition-transform">M</span>
                     </div>
                     <span className="font-black text-xl tracking-tight text-gray-900 dark:text-white uppercase">
                         {logo}
                     </span>
-                </div>
+                </Link>
 
                 {/* Links */}
                 <div className="hidden md:flex items-center gap-8">
-                    {links.map((link, index) => (
-                        <a
-                            key={index}
-                            href={link.href}
-                            className="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
-                            {link.label}
-                        </a>
-                    ))}
+                    {navItems}
 
                     {user ? (
                         <div className="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">
