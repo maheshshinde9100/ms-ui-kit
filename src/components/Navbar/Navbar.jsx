@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Layers } from 'lucide-react';
 import Avatar from '../Avatar';
 
 /**
@@ -52,11 +53,11 @@ const Navbar = ({
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-8 h-8 bg-blue-600 rounded-xl rotate-12 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-0 transition-transform">
-                        <span className="text-white font-black rotate-[-12deg] group-hover:rotate-0 transition-transform">M</span>
+                <Link to="/" className="flex items-center gap-3 group">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
+                        <Layers className="text-white" size={24} />
                     </div>
-                    <span className="font-black text-xl tracking-tight text-gray-900 dark:text-white uppercase">
+                    <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                         {logo}
                     </span>
                 </Link>

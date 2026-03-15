@@ -396,40 +396,71 @@ const TestingUI = () => {
                 {/* Advanced Elements Section */}
                 <section className="space-y-12">
                     <div className="text-center">
-                        <h2 className="text-4xl font-bold mb-4">Complex UI Elements</h2>
+                        <h2 className="text-4xl font-bold mb-4">Surfaces & Complex Elements</h2>
                         <div className="h-1.5 w-24 bg-blue-600 rounded-full mx-auto"></div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <Card className="lg:col-span-2 p-8">
-                            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <Layout className="text-blue-600" /> Interactive Dialogs
-                            </h3>
-                            <div className="bg-gray-50 dark:bg-gray-900/50 rounded-2xl p-12 flex flex-col items-center justify-center text-center space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Modals */}
+                        <ComponentShowcase 
+                            title="Interactive Dialogs" 
+                            description="Ready for deep integration with Framer Motion"
+                            code={`<Modal isOpen={open} onClose={close} title="Hello">\n  <p>Content</p>\n</Modal>`}
+                        >
+                            <div className="flex flex-col items-center justify-center text-center space-y-4">
                                 <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full text-blue-600">
-                                    <MessageSquare size={48} />
+                                    <MessageSquare size={32} />
                                 </div>
-                                <h4 className="text-2xl font-bold">Ready for deep integration</h4>
-                                <p className="text-gray-500 max-w-md">Our modals support full glassmorphism effect, custom footers, and smooth Framer Motion entry/exit animations.</p>
-                                <Button size="lg" variant="premium" onClick={() => setIsModalOpen(true)}>
+                                <Button variant="premium" onClick={() => setIsModalOpen(true)}>
                                     Launch Example Modal
                                 </Button>
                             </div>
-                        </Card>
+                        </ComponentShowcase>
 
-                        <div className="space-y-8">
-                            <div>
-                                <h3 className="text-xl font-bold mb-4">Accordion Groups</h3>
+                        {/* Accordion */}
+                        <ComponentShowcase 
+                            title="Accordion Groups" 
+                            description="Expandable vertical data panels"
+                            code={`<Accordion items={[{title: 'FAQ', content: '...'}]} />`}
+                        >
+                            <div className="w-full">
                                 <Accordion items={accordionItems} />
                             </div>
-                            <Card className="p-6 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <Star fill="currentColor" />
-                                    <h3 className="font-bold uppercase tracking-widest text-sm">Pro Tip</h3>
-                                </div>
-                                <p className="text-lg font-medium">Use the <code className="bg-white/20 px-1.5 rounded">glass</code> variant on Cards to create stunning modern layouts.</p>
-                            </Card>
-                        </div>
+                        </ComponentShowcase>
+
+                        {/* Cards */}
+                        <ComponentShowcase 
+                            title="Cards & Surfaces" 
+                            description="Premium containers with glassmorphism"
+                            code={`<Card variant="glass" elevated={true}>\n  <p>Content</p>\n</Card>`}
+                        >
+                            <div className="w-full space-y-4">
+                                <Card className="p-5 bg-gradient-to-br from-blue-600 to-purple-700 text-white rounded-3xl" elevated>
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Star fill="currentColor" size={16} />
+                                        <h3 className="font-bold tracking-wide text-sm">Pro Tip</h3>
+                                    </div>
+                                    <p className="text-xs font-medium opacity-90">Use the glass variant on Cards to create stunning modern layouts.</p>
+                                </Card>
+                                <Card variant="glass" className="p-5 rounded-3xl border border-gray-200 dark:border-gray-800">
+                                    <p className="font-bold text-sm">Glassmorphism Card</p>
+                                    <p className="text-xs text-gray-500 mt-1">I have a backdrop blur automatically applied.</p>
+                                </Card>
+                            </div>
+                        </ComponentShowcase>
+                        
+                        {/* Avatars */}
+                        <ComponentShowcase 
+                            title="User Avatars" 
+                            description="User representation with status"
+                            code={`<Avatar src={url} name="JD" status="online" bordered size="lg" />`}
+                        >
+                            <div className="flex items-center gap-6 justify-center">
+                                <Avatar src={user.avatar} size="lg" bordered status="online" />
+                                <Avatar name="MS" size="md" status="offline" />
+                                <Avatar name="UX" size="sm" variant="square" />
+                            </div>
+                        </ComponentShowcase>
                     </div>
                 </section>
 
