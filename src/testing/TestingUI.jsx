@@ -24,7 +24,8 @@ import {
     EmptyState,
     Checkbox,
     Textarea,
-    Dropdown
+    Dropdown,
+    Footer
 } from '../components';
 import { 
     Copy, 
@@ -48,7 +49,10 @@ import {
     PackageSearch,
     Clock,
     Trophy,
-    Target
+    Target,
+    Github,
+    Linkedin,
+    Twitter
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -151,7 +155,7 @@ const TestingUI = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans transition-colors duration-500 mb-20">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans transition-colors duration-500">
             <Navbar logo="MS UI" links={navLinks} user={user} />
 
             <div className="max-w-7xl mx-auto px-6 pt-32 space-y-24">
@@ -479,6 +483,35 @@ const TestingUI = () => {
                     </div>
                 </section>
             </div>
+
+            <Footer 
+                logoText="MS UI Kit"
+                description="A premium UI component library crafted for modern web applications. Built with Tailwind CSS and Framer Motion."
+                companyInfo={{ name: "Mahesh Shinde", year: new Date().getFullYear() }}
+                socials={[
+                    { label: "GitHub", href: "https://github.com/maheshshinde9100", icon: <Github size={20} /> },
+                    { label: "LinkedIn", href: "https://www.linkedin.com/in/maheshshinde9100/", icon: <Linkedin size={20} /> },
+                    { label: "Twitter", href: "#", icon: <Twitter size={20} /> }
+                ]}
+                links={[
+                    {
+                        title: "Product",
+                        items: [
+                            { label: "Components", href: "/" },
+                            { label: "Documentation", href: "#" },
+                            { label: "About Developer", href: "/developer" }
+                        ]
+                    },
+                    {
+                        title: "Resources",
+                        items: [
+                            { label: "GitHub Repository", href: "https://github.com/maheshshinde9100/ms-ui-kit" },
+                            { label: "Figma File", href: "#" },
+                            { label: "NPM Package", href: "#" }
+                        ]
+                    }
+                ]}
+            />
 
             {/* Modal Demo */}
             <Modal

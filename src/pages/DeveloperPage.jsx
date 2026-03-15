@@ -15,6 +15,7 @@ import {
   Star
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Footer } from '../components';
 
 const DeveloperPage = () => {
   const info = {
@@ -236,6 +237,34 @@ const DeveloperPage = () => {
           </div>
         </div>
       </motion.div>
+      <div className="mt-12 -mx-4 sm:-mx-6 lg:-mx-8">
+        <Footer 
+          logoText="MS UI Kit"
+          description="A premium UI component library crafted for modern web applications. Built with Tailwind CSS and Framer Motion."
+          companyInfo={{ name: "Mahesh Shinde", year: new Date().getFullYear() }}
+          socials={[
+            { label: "GitHub", href: "https://github.com/maheshshinde9100", icon: <Github size={20} /> },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/maheshshinde9100/", icon: <Linkedin size={20} /> }
+          ]}
+          links={[
+            {
+              title: "Product",
+              items: [
+                { label: "Components", href: "/" },
+                { label: "Documentation", href: "#" },
+                { label: "About Developer", href: "/developer" }
+              ]
+            },
+            {
+              title: "Resources",
+              items: [
+                { label: "GitHub Repository", href: "https://github.com/maheshshinde9100/ms-ui-kit" },
+                { label: "NPM Package", href: "#" }
+              ]
+            }
+          ]}
+        />
+      </div>
     </div>
   );
 };
