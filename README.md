@@ -46,7 +46,7 @@ export default App;
 
 ## 🧩 Available Components
 
-Currently included in **v0.1.0**:
+Currently included in **v0.2.0**:
 
 * Button
 * Card
@@ -123,7 +123,7 @@ A flexible container component used to display grouped content.
 Current version:
 
 ```
-ms-ui-kit@0.1.0
+ms-ui-kit@0.2.0
 ```
 
 This is the **initial release** containing core UI components.
