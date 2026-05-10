@@ -65,31 +65,34 @@ const Button = ({
     // Secondary - Light gray
     secondary: `
       bg-gradient-to-r from-gray-100 to-gray-200
+      dark:from-gray-800 dark:to-gray-900
       hover:from-gray-200 hover:to-gray-300
+      dark:hover:from-gray-700 dark:hover:to-gray-800
       active:from-gray-300 active:to-gray-400
-      text-gray-800
+      dark:active:from-gray-600 dark:active:to-gray-700
+      text-gray-800 dark:text-gray-100
       shadow-sm hover:shadow
       focus:ring-gray-400/50
-      border border-gray-300
+      border border-gray-300 dark:border-gray-700
     `,
 
     // Outline - Border only
     outline: `
       bg-transparent
-      hover:bg-gray-50
-      active:bg-gray-100
-      text-gray-700
-      border-2 border-gray-300
-      hover:border-gray-400
+      hover:bg-gray-50 dark:hover:bg-gray-900
+      active:bg-gray-100 dark:active:bg-gray-800
+      text-gray-700 dark:text-gray-300
+      border-2 border-gray-300 dark:border-gray-700
+      hover:border-gray-400 dark:hover:border-gray-600
       focus:ring-gray-400/30
     `,
 
     // Ghost - Minimal
     ghost: `
       bg-transparent
-      hover:bg-gray-100
-      active:bg-gray-200
-      text-gray-700
+      hover:bg-gray-100 dark:hover:bg-gray-800/50
+      active:bg-gray-200 dark:active:bg-gray-700/50
+      text-gray-700 dark:text-gray-400
       focus:ring-gray-400/30
     `,
 

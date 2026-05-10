@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import Avatar from '../Avatar';
 
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+
 /**
  * ms-ui-kit Navbar Component
  * A premium sticky navigation bar with glassmorphism
@@ -65,6 +67,8 @@ const Navbar = ({
                 {/* Links */}
                 <div className="hidden md:flex items-center gap-8">
                     {navItems}
+                    
+                    <ThemeToggle />
 
                     {user ? (
                         <div className="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">

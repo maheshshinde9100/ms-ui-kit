@@ -24,3 +24,4 @@ export { default as Checkbox } from './Checkbox';
 export { default as Textarea } from './Textarea';
 export { default as Dropdown } from './Dropdown';
 export { default as Footer } from './Footer';
+export { default as ThemeToggle } from './ThemeToggle/ThemeToggle';
