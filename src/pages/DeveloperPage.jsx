@@ -259,7 +259,7 @@ const DeveloperPage = () => {
               title: "Resources",
               items: [
                 { label: "GitHub Repository", href: "https://github.com/maheshshinde9100/ms-ui-kit" },
-                { label: "NPM Package", href: "#" }
+                { label: "NPM Package", href: "https://www.npmjs.com/package/ms-ui-kit" }
               ]
             }
           ]}
