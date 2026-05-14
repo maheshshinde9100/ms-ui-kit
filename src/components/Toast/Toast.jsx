@@ -7,6 +7,10 @@ const ToastContext = createContext(null);
 export const ToastProvider = ({ children }) => {
     const [toasts, setToasts] = useState([]);
 
+    const removeToast = useCallback((id) => {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, []);
+
     const addToast = useCallback((toast) => {
         const id = Math.random().toString(36).substr(2, 9);
         setToasts((prev) => [...prev, { id, ...toast }]);
@@ -15,11 +19,7 @@ export const ToastProvider = ({ children }) => {
                 removeToast(id);
             }, toast.duration || 3000);
         }
-    }, []);
-
-    const removeToast = useCallback((id) => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, []);
+    }, [removeToast]);
 
     const toast = {
         success: (message, options) => addToast({ type: 'success', message, ...options }),
@@ -48,7 +48,7 @@ export const useToast = () => {
     return context;
 };
 
-const ToastItem = ({ id, type, message, onRemove }) => {
+const ToastItem = ({ type, message, onRemove }) => {
     const icons = {
         success: <CheckCircle2 className="text-emerald-500" size={20} />,
         error: <AlertCircle className="text-rose-500" size={20} />,
