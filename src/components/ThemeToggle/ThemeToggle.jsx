@@ -22,10 +22,14 @@ const ThemeToggle = () => {
             rotate: theme === 'light' ? 0 : 90,
             opacity: theme === 'light' ? 1 : 0,
           }}
-          transition={{ duration: 0.2 }}
-          className="absolute inset-0"
+          transition={{ 
+            type: "spring",
+            stiffness: 300,
+            damping: 20
+          }}
+          className="absolute inset-0 flex items-center justify-center text-amber-500"
         >
-          <Sun size={20} />
+          <Sun size={20} fill="currentColor" />
         </motion.div>
         <motion.div
           initial={false}
@@ -34,10 +38,14 @@ const ThemeToggle = () => {
             rotate: theme === 'dark' ? 0 : -90,
             opacity: theme === 'dark' ? 1 : 0,
           }}
-          transition={{ duration: 0.2 }}
-          className="absolute inset-0"
+          transition={{ 
+            type: "spring",
+            stiffness: 300,
+            damping: 20
+          }}
+          className="absolute inset-0 flex items-center justify-center text-blue-400"
         >
-          <Moon size={20} />
+          <Moon size={20} fill="currentColor" />
         </motion.div>
       </div>
     </motion.button>
