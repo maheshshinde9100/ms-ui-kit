@@ -25,7 +25,13 @@ import {
     Checkbox,
     Textarea,
     Dropdown,
-    Footer
+    Footer,
+    DataTable,
+    Drawer,
+    CommandPalette,
+    FileUpload,
+    DatePicker,
+    useToast
 } from '../components';
 import { 
     Copy, 
@@ -52,7 +58,14 @@ import {
     Target,
     Github,
     Linkedin,
-    Twitter
+    Twitter,
+    Bell,
+    Calendar,
+    Table as TableIcon,
+    TerminalSquare,
+    UploadCloud,
+    Menu,
+    Command as CommandIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -118,6 +131,10 @@ const TestingUI = () => {
     const [switchState, setSwitchState] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [activeCategory, setActiveCategory] = useState('all');
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isCommandOpen, setIsCommandOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const toast = useToast();
 
     const navLinks = [
         { label: 'Components', href: '/' },
@@ -137,6 +154,8 @@ const TestingUI = () => {
         { id: 'feedback', label: 'Feedback', icon: <Zap size={18} /> },
         { id: 'navigation', label: 'Navigation', icon: <Layout size={18} /> },
         { id: 'data', label: 'Data Display', icon: <Code size={18} /> },
+        { id: 'advanced', label: 'Advanced UI', icon: <TerminalSquare size={18} /> },
+        { id: 'overlays', label: 'Overlays & Toasts', icon: <Bell size={18} /> },
     ];
 
     const accordionItems = [
@@ -163,6 +182,23 @@ const TestingUI = () => {
     ];
 
     const isVisible = (cat) => activeCategory === 'all' || activeCategory === cat;
+
+    const commandActions = [
+        { id: '1', label: 'Go to Dashboard', description: 'Navigate to main dashboard', icon: <Home size={18} />, onSelect: () => toast.success("Navigating to Dashboard") },
+        { id: '2', label: 'Settings', description: 'Open account settings', icon: <Settings size={18} />, onSelect: () => toast.info("Opening Settings") },
+        { id: '3', label: 'Search Users', description: 'Find a user by name or email', icon: <User size={18} />, onSelect: () => toast.success("Opening User Search") },
+    ];
+
+    const tableColumns = [
+        { key: 'name', label: 'Name' },
+        { key: 'role', label: 'Role' },
+        { key: 'status', label: 'Status', render: (val) => <Badge variant={val === 'Active' ? 'success' : 'default'}>{val}</Badge> }
+    ];
+    const tableData = [
+        { id: 1, name: 'Mahesh Shinde', role: 'Developer', status: 'Active' },
+        { id: 2, name: 'John Doe', role: 'Designer', status: 'Offline' },
+        { id: 3, name: 'Jane Smith', role: 'Manager', status: 'Active' },
+    ];
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans transition-colors duration-500">
@@ -472,6 +508,88 @@ const TestingUI = () => {
                                     </div>
                                 </section>
                             )}
+
+                            {/* Advanced UI */}
+                            {isVisible('advanced') && (
+                                <section className="space-y-8">
+                                    <h2 className="text-2xl font-black text-gray-900 dark:text-white flex items-center gap-3">
+                                        <TerminalSquare className="text-indigo-600" /> Advanced UI
+                                    </h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <ComponentShowcase 
+                                            title="Data Table" 
+                                            description="Sortable, filterable, paginated data grid"
+                                            code={`<DataTable columns={cols} data={data} searchable paginated />`}
+                                        >
+                                            <div className="w-full">
+                                                <DataTable columns={tableColumns} data={tableData} searchable paginated pageSize={2} />
+                                            </div>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase 
+                                            title="Command Palette" 
+                                            description="Search-driven navigation and actions"
+                                            code={`<CommandPalette isOpen={open} onClose={close} actions={actions} />`}
+                                        >
+                                            <Button variant="premium" onClick={() => setIsCommandOpen(true)} startIcon={<CommandIcon size={18} />}>
+                                                Open Command Palette
+                                            </Button>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase 
+                                            title="File Upload" 
+                                            description="Drag and drop file upload zone"
+                                            code={`<FileUpload onUpload={(files) => console.log(files)} />`}
+                                        >
+                                            <div className="w-full">
+                                                <FileUpload onUpload={(f) => toast.success(`Uploaded ${f.length} file(s)`)} />
+                                            </div>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase 
+                                            title="Date Picker" 
+                                            description="Custom animated calendar"
+                                            code={`<DatePicker selected={date} onChange={setDate} />`}
+                                        >
+                                            <div className="w-full max-w-sm">
+                                                <DatePicker selected={selectedDate} onChange={setSelectedDate} />
+                                            </div>
+                                        </ComponentShowcase>
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* Overlays & Toasts */}
+                            {isVisible('overlays') && (
+                                <section className="space-y-8">
+                                    <h2 className="text-2xl font-black text-gray-900 dark:text-white flex items-center gap-3">
+                                        <Bell className="text-rose-500" /> Overlays & Toasts
+                                    </h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <ComponentShowcase 
+                                            title="Toast Notifications" 
+                                            description="Global contextual message system"
+                                            code={`const toast = useToast();\ntoast.success('Saved successfully!');`}
+                                        >
+                                            <div className="flex flex-wrap gap-4 justify-center">
+                                                <Button onClick={() => toast.success("Successfully saved changes!")} className="bg-emerald-500 hover:bg-emerald-600 text-white border-transparent">Success Toast</Button>
+                                                <Button onClick={() => toast.error("Failed to delete item.")} className="bg-rose-500 hover:bg-rose-600 text-white border-transparent">Error Toast</Button>
+                                                <Button onClick={() => toast.info("New update available.")} className="bg-blue-500 hover:bg-blue-600 text-white border-transparent">Info Toast</Button>
+                                            </div>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase 
+                                            title="Drawer Navigation" 
+                                            description="Off-canvas side panels"
+                                            code={`<Drawer isOpen={open} onClose={close} title="Menu">...</Drawer>`}
+                                        >
+                                            <Button variant="outline" onClick={() => setIsDrawerOpen(true)} startIcon={<Menu size={18} />}>
+                                                Open Drawer
+                                            </Button>
+                                        </ComponentShowcase>
+                                    </div>
+                                </section>
+                            )}
                         </div>
                     </main>
                 </div>
@@ -521,6 +639,27 @@ const TestingUI = () => {
                     </div>
                 </div>
             </Modal>
+
+            <CommandPalette 
+                isOpen={isCommandOpen} 
+                onClose={() => setIsCommandOpen(false)} 
+                actions={commandActions} 
+            />
+
+            <Drawer 
+                isOpen={isDrawerOpen} 
+                onClose={() => setIsDrawerOpen(false)} 
+                title="Application Menu"
+            >
+                <div className="space-y-4">
+                    <p className="text-gray-500">This is a custom drawer component. You can put anything here.</p>
+                    <div className="space-y-2">
+                        <Button variant="outline" className="w-full justify-start" startIcon={<Home size={18} />}>Dashboard</Button>
+                        <Button variant="outline" className="w-full justify-start" startIcon={<Settings size={18} />}>Settings</Button>
+                        <Button variant="outline" className="w-full justify-start" startIcon={<User size={18} />}>Profile</Button>
+                    </div>
+                </div>
+            </Drawer>
         </div>
     );
 };
