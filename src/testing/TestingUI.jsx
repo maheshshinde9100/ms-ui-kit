@@ -33,15 +33,15 @@ import {
     DatePicker,
     useToast
 } from '../components';
-import { 
-    Copy, 
-    Check, 
-    Code, 
-    Eye, 
-    Layers, 
-    Layout, 
-    MessageSquare, 
-    MousePointer2, 
+import {
+    Copy,
+    Check,
+    Code,
+    Eye,
+    Layers,
+    Layout,
+    MessageSquare,
+    MousePointer2,
     Zap,
     Home,
     User,
@@ -87,14 +87,14 @@ const ComponentShowcase = ({ title, children, code, description }) => {
                     {description && <p className="text-sm text-gray-500 mt-1">{description}</p>}
                 </div>
                 <div className="flex gap-2">
-                    <button 
+                    <button
                         onClick={() => setShowCode(!showCode)}
                         className={`p-2 rounded-lg transition-colors ${showCode ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500'}`}
                         title="Toggle Code"
                     >
                         <Code size={18} />
                     </button>
-                    <button 
+                    <button
                         onClick={handleCopy}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-500 transition-colors"
                         title="Copy Code"
@@ -103,14 +103,14 @@ const ComponentShowcase = ({ title, children, code, description }) => {
                     </button>
                 </div>
             </div>
-            
+
             <div className="p-8 bg-gray-50/30 dark:bg-gray-900/10 min-h-[150px] flex items-center justify-center">
                 {children}
             </div>
 
             <AnimatePresence>
                 {showCode && (
-                    <motion.div 
+                    <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -202,7 +202,7 @@ const TestingUI = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans transition-colors duration-500">
-            <Navbar logo="MS UI" links={navLinks} user={user} />
+            <Navbar logo="MS UI KIT" links={navLinks} user={user} />
 
             <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
                 <div className="flex flex-col lg:flex-row gap-12">
@@ -214,11 +214,10 @@ const TestingUI = () => {
                                 <button
                                     key={cat.id}
                                     onClick={() => setActiveCategory(cat.id)}
-                                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all duration-200 ${
-                                        activeCategory === cat.id 
-                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 translate-x-1' 
-                                        : 'text-gray-500 hover:bg-gray-200/50 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-white'
-                                    }`}
+                                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all duration-200 ${activeCategory === cat.id
+                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 translate-x-1'
+                                            : 'text-gray-500 hover:bg-gray-200/50 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-white'
+                                        }`}
                                 >
                                     {cat.icon}
                                     {cat.label}
@@ -251,11 +250,11 @@ const TestingUI = () => {
                                             <div className="flex items-center gap-3 bg-gray-100 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 px-5 py-3.5 rounded-xl font-mono text-sm shadow-inner">
                                                 <span className="text-pink-600 dark:text-pink-400 font-bold">npm</span>
                                                 <span className="text-gray-800 dark:text-gray-200">install ms-ui-kit</span>
-                                                <button 
-                                                    onClick={() => { 
-                                                        navigator.clipboard.writeText("npm install ms-ui-kit"); 
-                                                        toast.success("Copied install command!"); 
-                                                    }} 
+                                                <button
+                                                    onClick={() => {
+                                                        navigator.clipboard.writeText("npm install ms-ui-kit");
+                                                        toast.success("Copied install command!");
+                                                    }}
                                                     className="ml-2 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none"
                                                     title="Copy command"
                                                 >
@@ -315,8 +314,8 @@ const TestingUI = () => {
                                         <MousePointer2 className="text-blue-600" /> Buttons & Forms
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Premium Buttons" 
+                                        <ComponentShowcase
+                                            title="Premium Buttons"
                                             description="Interactive states with gradients and shadows"
                                             code={`<Button variant="premium">Premium Action</Button>\n<Button variant="outline" startIcon={<Zap />}>Quick Start</Button>`}
                                         >
@@ -328,30 +327,30 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Form Controls" 
+                                        <ComponentShowcase
+                                            title="Form Controls"
                                             description="Beautifully styled inputs, textareas, and selects"
                                             code={`<Input label="Email" placeholder="hi@ms.com" variant="glass" />\n<Textarea label="Message" />\n<Dropdown options={opts} />`}
                                         >
                                             <div className="w-full max-w-sm space-y-4">
-                                                <Input 
-                                                    label="Search" 
-                                                    placeholder="Looking for something?" 
-                                                    startIcon={<Info size={18} />} 
+                                                <Input
+                                                    label="Search"
+                                                    placeholder="Looking for something?"
+                                                    startIcon={<Info size={18} />}
                                                     variant="outline"
                                                 />
-                                                <Dropdown 
-                                                    label="Categories" 
+                                                <Dropdown
+                                                    label="Categories"
                                                     options={[
                                                         { label: 'Components', value: 'comp' },
                                                         { label: 'Templates', value: 'temp' },
                                                         { label: 'Icons', value: 'icon' }
-                                                    ]} 
+                                                    ]}
                                                 />
                                                 <div className="flex flex-col gap-2 mt-2">
-                                                    <Checkbox 
-                                                        label="I agree to the terms" 
-                                                        description="You must agree to continue." 
+                                                    <Checkbox
+                                                        label="I agree to the terms"
+                                                        description="You must agree to continue."
                                                     />
                                                     <div className="flex gap-4 mt-2">
                                                         <Switch checked={switchState} onChange={setSwitchState} label="Enable Feature" />
@@ -370,8 +369,8 @@ const TestingUI = () => {
                                         <Zap className="text-yellow-500" /> Feedback & Indicators
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Progress Indicators" 
+                                        <ComponentShowcase
+                                            title="Progress Indicators"
                                             description="Smooth animated progress bars for values"
                                             code={`<Progress value={65} variant="premium" showValue animated />`}
                                         >
@@ -381,8 +380,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Skeleton Loading" 
+                                        <ComponentShowcase
+                                            title="Skeleton Loading"
                                             description="Placeholder elements for async data loading"
                                             code={`<Skeleton variant="circular" width={60} height={60} />\n<Skeleton variant="text" />`}
                                         >
@@ -395,8 +394,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="System Feedback" 
+                                        <ComponentShowcase
+                                            title="System Feedback"
                                             description="Alerts and status indicators"
                                             code={`<Alert variant="info" title="Update Available" />`}
                                         >
@@ -409,8 +408,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Status Badges" 
+                                        <ComponentShowcase
+                                            title="Status Badges"
                                             description="Contextual info and status badges"
                                             code={`<Badge variant="success">Online</Badge>`}
                                         >
@@ -432,8 +431,8 @@ const TestingUI = () => {
                                         <Layout className="text-purple-600" /> Overlays & Navigation
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Animated Tabs" 
+                                        <ComponentShowcase
+                                            title="Animated Tabs"
                                             description="Spring-based transitions between panels"
                                             code={`<Tabs tabs={items} activeColor="blue" variant="pill" />`}
                                         >
@@ -442,8 +441,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Interactive Dialogs" 
+                                        <ComponentShowcase
+                                            title="Interactive Dialogs"
                                             description="Framer Motion powered modals"
                                             code={`<Modal isOpen={open} onClose={close} title="Hello" />`}
                                         >
@@ -452,8 +451,8 @@ const TestingUI = () => {
                                             </Button>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Navigation Helpers" 
+                                        <ComponentShowcase
+                                            title="Navigation Helpers"
                                             description="Breadcrumbs and Pagination"
                                             code={`<Breadcrumb items={items} />`}
                                         >
@@ -463,8 +462,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Accordion Groups" 
+                                        <ComponentShowcase
+                                            title="Accordion Groups"
                                             description="Expandable vertical panels"
                                             code={`<Accordion items={items} />`}
                                         >
@@ -483,8 +482,8 @@ const TestingUI = () => {
                                         <Code className="text-emerald-600" /> Data Display
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Interactive Timeline" 
+                                        <ComponentShowcase
+                                            title="Interactive Timeline"
                                             description="Step-by-step histories"
                                             code={`<Timeline items={events} />`}
                                         >
@@ -496,8 +495,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="User Avatars" 
+                                        <ComponentShowcase
+                                            title="User Avatars"
                                             description="Representation with status"
                                             code={`<Avatar src={url} status="online" />`}
                                         >
@@ -507,8 +506,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Surfaces" 
+                                        <ComponentShowcase
+                                            title="Surfaces"
                                             description="Premium containers with glassmorphism"
                                             code={`<Card variant="glass" />`}
                                         >
@@ -518,8 +517,8 @@ const TestingUI = () => {
                                             </Card>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Empty Contexts" 
+                                        <ComponentShowcase
+                                            title="Empty Contexts"
                                             description="Missing data placeholders"
                                             code={`<EmptyState title="No Data" />`}
                                         >
@@ -538,8 +537,8 @@ const TestingUI = () => {
                                         <TerminalSquare className="text-indigo-600" /> Advanced UI
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Data Table" 
+                                        <ComponentShowcase
+                                            title="Data Table"
                                             description="Sortable, filterable, paginated data grid"
                                             code={`<DataTable columns={cols} data={data} searchable paginated />`}
                                         >
@@ -548,8 +547,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Command Palette" 
+                                        <ComponentShowcase
+                                            title="Command Palette"
                                             description="Search-driven navigation and actions"
                                             code={`<CommandPalette isOpen={open} onClose={close} actions={actions} />`}
                                         >
@@ -558,8 +557,8 @@ const TestingUI = () => {
                                             </Button>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="File Upload" 
+                                        <ComponentShowcase
+                                            title="File Upload"
                                             description="Drag and drop file upload zone"
                                             code={`<FileUpload onUpload={(files) => console.log(files)} />`}
                                         >
@@ -568,8 +567,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Date Picker" 
+                                        <ComponentShowcase
+                                            title="Date Picker"
                                             description="Custom animated calendar"
                                             code={`<DatePicker selected={date} onChange={setDate} />`}
                                         >
@@ -588,8 +587,8 @@ const TestingUI = () => {
                                         <Bell className="text-rose-500" /> Overlays & Toasts
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <ComponentShowcase 
-                                            title="Toast Notifications" 
+                                        <ComponentShowcase
+                                            title="Toast Notifications"
                                             description="Global contextual message system"
                                             code={`const toast = useToast();\ntoast.success('Saved successfully!');`}
                                         >
@@ -600,8 +599,8 @@ const TestingUI = () => {
                                             </div>
                                         </ComponentShowcase>
 
-                                        <ComponentShowcase 
-                                            title="Drawer Navigation" 
+                                        <ComponentShowcase
+                                            title="Drawer Navigation"
                                             description="Off-canvas side panels"
                                             code={`<Drawer isOpen={open} onClose={close} title="Menu">...</Drawer>`}
                                         >
@@ -617,8 +616,8 @@ const TestingUI = () => {
                 </div>
             </div>
 
-            <Footer 
-                logoText="MS UI Kit"
+            <Footer
+                logoText="MS UI KIT"
                 description="A premium UI component library crafted for modern web applications."
                 companyInfo={{ name: "Mahesh Shinde", year: new Date().getFullYear() }}
                 socials={[
@@ -669,15 +668,15 @@ const TestingUI = () => {
                 </div>
             </Modal>
 
-            <CommandPalette 
-                isOpen={isCommandOpen} 
-                onClose={() => setIsCommandOpen(false)} 
-                actions={commandActions} 
+            <CommandPalette
+                isOpen={isCommandOpen}
+                onClose={() => setIsCommandOpen(false)}
+                actions={commandActions}
             />
 
-            <Drawer 
-                isOpen={isDrawerOpen} 
-                onClose={() => setIsDrawerOpen(false)} 
+            <Drawer
+                isOpen={isDrawerOpen}
+                onClose={() => setIsDrawerOpen(false)}
                 title="Application Menu"
             >
                 <div className="space-y-4">
