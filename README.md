@@ -1,8 +1,18 @@
-# MS UI Kit
+# MS UI Kit 🚀
 
-**MS UI Kit** is a lightweight and customizable React UI component library designed to help developers quickly build modern web applications using reusable and accessible components.
+**MS UI Kit** is a premium, lightweight, and highly customizable React UI component library. It is designed with a focus on modern aesthetics—incorporating glassmorphism, smooth Framer Motion animations, and a robust global theme system.
 
-Built with **React, Vite, and TailwindCSS**, the library provides clean, modular UI components that are easy to integrate into any React project.
+Built with **React, Vite, and Tailwind CSS**, the library provides clean, modular UI components that are easy to integrate into any professional React project.
+
+---
+
+## ✨ Key Features
+
+*   🌓 **Global Theme Management**: Full dark/light mode support out of the box using React Context.
+*   🎭 **Smooth Animations**: Powered by Framer Motion for a premium user experience.
+*   💎 **Premium Variants**: Specialized styles like "Glass" and "Premium" for high-end dashboards.
+*   📱 **Responsive Design**: Mobile-first components that look great on any screen.
+*   🛠️ **Easy Integration**: Built to work seamlessly with Tailwind CSS.
 
 ---
 
@@ -18,24 +28,26 @@ npm install ms-ui-kit
 
 ## 🚀 Quick Start
 
-Import the components you need from the library.
+Wrap your application in the `ThemeProvider` to enable global theme management.
 
 ```jsx
-import { Button, Card } from "ms-ui-kit";
+import React from 'react';
+import { ThemeProvider, Button, ThemeToggle } from "ms-ui-kit";
 
 function App() {
   return (
-    <div>
-      <Button variant="primary">Click Me</Button>
-
-      <Card>
-        <Card.Header>Card Title</Card.Header>
-        <Card.Body>
-          <p>This is the card body.</p>
-        </Card.Body>
-        <Card.Footer>Card Footer</Card.Footer>
-      </Card>
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors">
+        <nav className="p-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold dark:text-white">My App</h1>
+          <ThemeToggle />
+        </nav>
+        
+        <main className="p-8">
+          <Button variant="premium">Premium Action</Button>
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 
@@ -48,108 +60,43 @@ export default App;
 
 Currently included in **v0.2.0**:
 
-* Button
-* Card
-* Modal
-* Navbar
-* Input
-* Avatar
-* Badge
-* Spinner
-* Switch
-* Alert
-* Accordion
-* Skeleton
-* Progress
-* Tabs
-* Tooltip
-* Breadcrumb
-* Pagination
-* Tag
-* Timeline
-* Rating
-* Stepper
-* EmptyState
-* Checkbox
-* Textarea
-* Dropdown
-
-More components will be added in future releases.
+*   **Navigation**: Navbar, Breadcrumb, Pagination, Tabs, ThemeToggle
+*   **Buttons & Forms**: Button, Input, Checkbox, Switch, Textarea, Dropdown
+*   **Data Display**: Card, Avatar, Badge, Tag, Timeline, Rating, Stepper, EmptyState
+*   **Feedback**: Alert, Modal, Tooltip, Spinner, Skeleton, Progress, Accordion
 
 ---
 
-## 🎨 Button Component
+## 🎨 Component Highlights
 
-A flexible button component with support for variants, icons, loading states, and sizes.
-
-### Props
-
-| Prop        | Type     | Default   | Description          |
-| ----------- | -------- | --------- | -------------------- |
-| `children`  | node     | —         | Button content       |
-| `variant`   | string   | `primary` | Button style variant |
-| `size`      | string   | `md`      | Button size          |
-| `disabled`  | boolean  | `false`   | Disable button       |
-| `loading`   | boolean  | `false`   | Show loading state   |
-| `fullWidth` | boolean  | `false`   | Full width button    |
-| `startIcon` | node     | —         | Icon before text     |
-| `endIcon`   | node     | —         | Icon after text      |
-| `className` | string   | `""`      | Custom CSS classes   |
-| `onClick`   | function | —         | Click handler        |
-
----
-
-## 🧱 Card Component
-
-A flexible container component used to display grouped content.
-
-### Props
-
-| Prop        | Type    | Default   | Description        |
-| ----------- | ------- | --------- | ------------------ |
-| `children`  | node    | —         | Card content       |
-| `variant`   | string  | `default` | Card style         |
-| `elevated`  | boolean | `true`    | Adds shadow        |
-| `bordered`  | boolean | `true`    | Adds border        |
-| `rounded`   | boolean | `true`    | Rounded corners    |
-| `hoverable` | boolean | `false`   | Hover animation    |
-| `className` | string  | `""`      | Custom CSS classes |
-| `width`     | string  | `auto`    | Card width         |
-
----
-
-## 📈 Version
-
-Current version:
-
-```
-ms-ui-kit@0.2.0
+### Button Component
+Supports multiple variants including `primary`, `premium`, `outline`, `ghost`, and `danger`.
+```jsx
+<Button variant="premium" startIcon={<Zap />}>
+  Upgrade Now
+</Button>
 ```
 
-This is the **initial release** containing core UI components.
-
-Future versions will introduce:
-
-* More UI components
-* Improved styling
-* Better accessibility
-* Performance optimizations
+### Card Component
+Includes a new `glass` variant for modern "Glassmorphism" designs.
+```jsx
+<Card variant="glass" hoverable>
+  <Card.Header>Premium Project</Card.Header>
+  <Card.Body>Content with backdrop blur effect.</Card.Body>
+</Card>
+```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions are welcome! If you'd like to improve this library:
 
-If you'd like to improve this library:
+1.  Fork the repository
+2.  Create a feature branch
+3.  Submit a pull request
 
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
-
-GitHub Repository:
-
-https://github.com/maheshshinde9100/ms-ui-kit
+GitHub Repository: [maheshshinde9100/ms-ui-kit](https://github.com/maheshshinde9100/ms-ui-kit)
 
 ---
 
@@ -161,9 +108,7 @@ This project is licensed under the **MIT License**.
 
 ## 👨‍💻 Author
 
-**Mahesh Shinde**
+**Mahesh Shinde**  
+*Computer Engineering Student | Full Stack Developer*
 
-Computer Engineering Student | Full Stack Developer
-
-GitHub:
-https://github.com/maheshshinde9100
+GitHub: [@maheshshinde9100](https://github.com/maheshshinde9100)
