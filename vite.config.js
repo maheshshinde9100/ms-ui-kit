@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import path from "path"
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(() => {
   const isVercel = process.env.VERCEL === "1";
 
   if (isVercel) {

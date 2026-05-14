@@ -2,17 +2,23 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TestingUI from './testing/TestingUI';
 import DeveloperPage from './pages/DeveloperPage';
+import { ThemeProvider } from './context/ThemeContext';
+import { ToastProvider } from './components';
 
 function App() {
   return (
-    <Router>
-      <div className="dark:bg-gray-950 min-h-screen">
-        <Routes>
-          <Route path="/" element={<TestingUI />} />
-          <Route path="/developer" element={<DeveloperPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <ToastProvider>
+        <Router>
+          <div className="bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
+            <Routes>
+              <Route path="/" element={<TestingUI />} />
+              <Route path="/developer" element={<DeveloperPage />} />
+            </Routes>
+          </div>
+        </Router>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 
