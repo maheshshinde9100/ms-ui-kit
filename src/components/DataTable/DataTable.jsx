@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ChevronDown, ChevronUp, Search, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronUp, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const DataTable = ({ 
@@ -7,8 +7,7 @@ const DataTable = ({
     data = [], 
     searchable = true,
     paginated = true,
-    pageSize = 5,
-    variant = 'default' 
+    pageSize = 5
 }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
