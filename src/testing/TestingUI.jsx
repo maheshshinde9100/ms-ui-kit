@@ -244,9 +244,31 @@ const TestingUI = () => {
                                         <h1 className="text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight">
                                             Component Library
                                         </h1>
-                                        <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl leading-relaxed">
+                                        <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl leading-relaxed mb-8">
                                             Explore our suite of premium UI components. Toggle dark mode in the navigation to see the magic.
                                         </p>
+                                        <div className="flex flex-wrap gap-6 items-center">
+                                            <div className="flex items-center gap-3 bg-gray-100 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 px-5 py-3.5 rounded-xl font-mono text-sm shadow-inner">
+                                                <span className="text-pink-600 dark:text-pink-400 font-bold">npm</span>
+                                                <span className="text-gray-800 dark:text-gray-200">install ms-ui-kit</span>
+                                                <button 
+                                                    onClick={() => { 
+                                                        navigator.clipboard.writeText("npm install ms-ui-kit"); 
+                                                        toast.success("Copied install command!"); 
+                                                    }} 
+                                                    className="ml-2 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none"
+                                                    title="Copy command"
+                                                >
+                                                    <Copy size={18} />
+                                                </button>
+                                            </div>
+                                            <a href="https://www.npmjs.com/package/ms-ui-kit" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors">
+                                                <PackageSearch size={20} /> npm package
+                                            </a>
+                                            <a href="https://github.com/maheshshinde9100/ms-ui-kit" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                                                <Github size={20} /> GitHub repo
+                                            </a>
+                                        </div>
                                     </motion.div>
                                 </header>
 
@@ -609,6 +631,13 @@ const TestingUI = () => {
                         items: [
                             { label: "Components", href: "/" },
                             { label: "About Developer", href: "/developer" }
+                        ]
+                    },
+                    {
+                        title: "Resources",
+                        items: [
+                            { label: "NPM Package", href: "https://www.npmjs.com/package/ms-ui-kit" },
+                            { label: "GitHub Repo", href: "https://github.com/maheshshinde9100/ms-ui-kit" }
                         ]
                     }
                 ]}
