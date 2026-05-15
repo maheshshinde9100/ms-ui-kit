@@ -9,7 +9,7 @@ const Modal = ({
   title,
   children,
   footer,
-  size = 'md', // sm, md, lg, xl, full
+  size = 'md',
   closeOnBackdrop = true,
   className = '',
 }) => {

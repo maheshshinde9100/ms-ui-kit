@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 const activeTraps = [];
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 const FOCUSABLE_SELECTOR = [
   'a[href]',
   'area[href]',
@@ -23,15 +24,35 @@ function getFocusable(container) {
   });
 }
 
+function focusFirstFocusable(element) {
+  const focusable = getFocusable(element);
+
+  if (focusable.length > 0) {
+    focusable[0].focus({ preventScroll: true });
+    return;
+  }
+
+  if (!element.hasAttribute('tabindex')) {
+    element.setAttribute('tabindex', '-1');
+  }
+
+  element.focus({ preventScroll: true });
+}
+
+function getTopTrap() {
+  return activeTraps[activeTraps.length - 1];
+}
+
 export const useFocusTrap = (ref, active) => {
   const previousFocusRef = useRef(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!active) return;
 
     const element = ref.current;
     if (!element) return;
 
+    previousFocusRef.current = null;
     const alreadyFocused = document.activeElement;
     if (alreadyFocused && !element.contains(alreadyFocused)) {
       previousFocusRef.current = alreadyFocused;
@@ -39,26 +60,16 @@ export const useFocusTrap = (ref, active) => {
 
     activeTraps.push(element);
 
-    let initRafId = requestAnimationFrame(() => {
-      const autofocusEl = element.querySelector('[autofocus]');
-      if (autofocusEl) {
-        autofocusEl.focus({ preventScroll: true });
-        return;
-      }
-      const focusable = getFocusable(element);
-      if (focusable.length > 0) {
-        focusable[0].focus({ preventScroll: true });
-      } else {
-        if (!element.hasAttribute('tabindex')) {
-          element.setAttribute('tabindex', '-1');
-        }
-        element.focus({ preventScroll: true });
-      }
-    });
+    const autofocusEl = element.querySelector('[autofocus]');
+    if (autofocusEl && typeof autofocusEl.focus === 'function') {
+      autofocusEl.focus({ preventScroll: true });
+    } else {
+      focusFirstFocusable(element);
+    }
 
     const handleKeyDown = (e) => {
       if (e.key !== 'Tab') return;
-      if (activeTraps[activeTraps.length - 1] !== element) return;
+      if (getTopTrap() !== element) return;
 
       const focusable = getFocusable(element);
 
@@ -72,7 +83,7 @@ export const useFocusTrap = (ref, active) => {
       const last = focusable[focusable.length - 1];
       const cur = document.activeElement;
 
-      if (!element.contains(cur)) {
+      if (!element.contains(cur) || cur === element) {
         e.preventDefault();
         (e.shiftKey ? last : first).focus({ preventScroll: true });
         return;
@@ -87,29 +98,17 @@ export const useFocusTrap = (ref, active) => {
       }
     };
 
-
-    let guardEnabled = false;
-    const enableGuardId = requestAnimationFrame(() => { guardEnabled = true; });
-
     const handleFocusIn = (e) => {
-      if (!guardEnabled) return;
-      if (activeTraps[activeTraps.length - 1] !== element) return;
+      if (getTopTrap() !== element) return;
       if (element.contains(e.target)) return;
 
-      const focusable = getFocusable(element);
-      if (focusable.length > 0) {
-        focusable[0].focus({ preventScroll: true });
-      } else {
-        element.focus({ preventScroll: true });
-      }
+      focusFirstFocusable(element);
     };
 
     document.addEventListener('keydown', handleKeyDown, true);
     document.addEventListener('focusin', handleFocusIn, true);
 
     return () => {
-      cancelAnimationFrame(initRafId);
-      cancelAnimationFrame(enableGuardId);
       document.removeEventListener('keydown', handleKeyDown, true);
       document.removeEventListener('focusin', handleFocusIn, true);
 
@@ -119,9 +118,15 @@ export const useFocusTrap = (ref, active) => {
       const prev = previousFocusRef.current;
       if (prev && typeof prev.focus === 'function') {
         requestAnimationFrame(() => {
-          if (document.body.contains(prev)) {
-            prev.focus({ preventScroll: true });
+          if (!document.body.contains(prev)) return;
+
+          const topTrap = getTopTrap();
+          if (topTrap && !topTrap.contains(prev)) {
+            focusFirstFocusable(topTrap);
+            return;
           }
+
+          prev.focus({ preventScroll: true });
         });
       }
     };
