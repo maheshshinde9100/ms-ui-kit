@@ -1,6 +1,6 @@
 {
   "name": "ms-ui-kit",
-"version": "0.2.0",
+  "version": "0.3.0",
   "description": "Reusable React UI components library",
   "type": "module",
   "main": "dist/index.js",
@@ -15,6 +15,14 @@
   ],
   "author": "Mahesh Shinde",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maheshshinde9100/ms-ui-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maheshshinde9100/ms-ui-kit/issues"
+  },
+  "homepage": "https://github.com/maheshshinde9100/ms-ui-kit#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
