@@ -29,21 +29,17 @@ function focusFirstFocusable(element) {
 
   if (focusable.length > 0) {
     focusable[0].focus({ preventScroll: true });
-    return;
+  } else {
+    element.focus({ preventScroll: true });
   }
-
-  if (!element.hasAttribute('tabindex')) {
-    element.setAttribute('tabindex', '-1');
-  }
-
-  element.focus({ preventScroll: true });
 }
 
 function getTopTrap() {
   return activeTraps[activeTraps.length - 1];
 }
 
-export const useFocusTrap = (ref, active) => {
+export const useFocusTrap = (ref, active, options = {}) => {
+  const { onEscape } = options;
   const previousFocusRef = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
@@ -51,6 +47,13 @@ export const useFocusTrap = (ref, active) => {
 
     const element = ref.current;
     if (!element) return;
+
+    // Track and set tabindex
+    const hadTabIndex = element.hasAttribute('tabindex');
+    const prevTabIndex = element.getAttribute('tabindex');
+    if (!hadTabIndex) {
+      element.setAttribute('tabindex', '-1');
+    }
 
     previousFocusRef.current = null;
     const alreadyFocused = document.activeElement;
@@ -68,8 +71,14 @@ export const useFocusTrap = (ref, active) => {
     }
 
     const handleKeyDown = (e) => {
-      if (e.key !== 'Tab') return;
       if (getTopTrap() !== element) return;
+
+      if (e.key === 'Escape' && onEscape) {
+        onEscape(e);
+        return;
+      }
+
+      if (e.key !== 'Tab') return;
 
       const focusable = getFocusable(element);
 
@@ -112,6 +121,13 @@ export const useFocusTrap = (ref, active) => {
       document.removeEventListener('keydown', handleKeyDown, true);
       document.removeEventListener('focusin', handleFocusIn, true);
 
+      // Restore tabindex
+      if (!hadTabIndex) {
+        element.removeAttribute('tabindex');
+      } else {
+        element.setAttribute('tabindex', prevTabIndex);
+      }
+
       const idx = activeTraps.indexOf(element);
       if (idx !== -1) activeTraps.splice(idx, 1);
 
@@ -130,5 +146,5 @@ export const useFocusTrap = (ref, active) => {
         });
       }
     };
-  }, [active, ref]);
+  }, [active, ref, onEscape]);
 };

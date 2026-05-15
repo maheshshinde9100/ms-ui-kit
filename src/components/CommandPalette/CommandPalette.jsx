@@ -16,7 +16,7 @@ const CommandPalette = ({
   const uid = useId();
   const listboxId = `${uid}-listbox`;
 
-  useFocusTrap(paletteRef, isOpen);
+  useFocusTrap(paletteRef, isOpen, { onEscape: onClose });
   useEffect(() => {
     if (!isOpen) return;
     setQuery('');
@@ -53,8 +53,6 @@ const CommandPalette = ({
         filteredActions[safeSelectedIndex].onSelect();
         onClose();
       }
-    } else if (e.key === 'Escape') {
-      onClose();
     }
   }, [filteredActions, safeSelectedIndex, onClose]);
 
@@ -88,7 +86,6 @@ const CommandPalette = ({
               role="dialog"
               aria-modal="true"
               aria-label="Command palette"
-              tabIndex={-1}
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -99,7 +96,7 @@ const CommandPalette = ({
                 <input
                   ref={inputRef}
                   role="combobox"
-                  aria-expanded={filteredActions.length > 0}
+                  aria-expanded="true"
                   aria-controls={listboxId}
                   aria-activedescendant={activeOptionId}
                   aria-autocomplete="list"

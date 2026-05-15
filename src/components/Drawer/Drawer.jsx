@@ -12,21 +12,16 @@ const Drawer = ({
   size = 'md'
 }) => {
   const drawerRef = useRef(null);
-  useFocusTrap(drawerRef, isOpen);
+  useFocusTrap(drawerRef, isOpen, { onEscape: onClose });
   useEffect(() => {
     if (!isOpen) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleEscape);
 
     return () => {
-      window.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = previousOverflow || '';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const sizes = {
     sm: 'max-w-sm',
@@ -64,7 +59,6 @@ const Drawer = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            tabIndex={-1}
             initial={variants[position]}
             animate={position === 'right' || position === 'left' ? { x: 0 } : { y: 0 }}
             exit={variants[position]}

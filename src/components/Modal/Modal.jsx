@@ -14,23 +14,17 @@ const Modal = ({
   className = '',
 }) => {
   const modalRef = useRef(null);
-  useFocusTrap(modalRef, isOpen);
+  useFocusTrap(modalRef, isOpen, { onEscape: onClose });
 
   useEffect(() => {
     if (!isOpen) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-
-    window.addEventListener('keydown', handleEscape);
     return () => {
-      window.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = previousOverflow || '';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const sizes = {
     sm: 'max-w-md',
@@ -60,7 +54,6 @@ const Modal = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            tabIndex={-1}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
