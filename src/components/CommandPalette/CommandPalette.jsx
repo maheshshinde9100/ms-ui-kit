@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Search, Command, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const CommandPalette = ({ 
     isOpen, 
@@ -10,6 +11,8 @@ const CommandPalette = ({
 }) => {
     const [query, setQuery] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const paletteRef = useRef(null);
+    useFocusTrap(paletteRef, isOpen);
 
     const filteredActions = actions.filter(action => 
         action.label.toLowerCase().includes(query.toLowerCase()) ||
@@ -61,6 +64,7 @@ const CommandPalette = ({
                     />
                     <div className="fixed inset-0 z-[1001] flex items-start justify-center pt-[15vh] px-4 pointer-events-none">
                         <motion.div
+                            ref={paletteRef}
                             initial={{ opacity: 0, scale: 0.95, y: -20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: -20 }}

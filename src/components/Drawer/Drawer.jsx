@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const Drawer = ({ 
     isOpen, 
@@ -10,16 +11,24 @@ const Drawer = ({
     position = 'right',
     size = 'md'
 }) => {
+    const drawerRef = useRef(null);
+    useFocusTrap(drawerRef, isOpen);
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') onClose();
+            };
+            window.addEventListener('keydown', handleEscape);
+            return () => window.removeEventListener('keydown', handleEscape);
         } else {
             document.body.style.overflow = 'unset';
         }
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [isOpen]);
+    }, [isOpen, onClose]);
 
     const sizes = {
         sm: 'max-w-sm',
@@ -51,6 +60,7 @@ const Drawer = ({
                     
                     {/* Drawer */}
                     <motion.div
+                        ref={drawerRef}
                         initial={variants[position]}
                         animate={position === 'right' || position === 'left' ? { x: 0 } : { y: 0 }}
                         exit={variants[position]}
