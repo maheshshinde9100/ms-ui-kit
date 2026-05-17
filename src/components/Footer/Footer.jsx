@@ -19,16 +19,15 @@ const Footer = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Brand Column */}
           <div className="md:col-span-5 lg:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
-            <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
-                <Layers className="text-white" size={24} />
+<Link to="/" aria-label="Go to homepage"
+  className="flex items-center gap-3 group mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-black">              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
+                <Layers className="text-white" size={24} aria-hidden="true" />
               </div>
               <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                 {logoText}
               </span>
             </Link>
-            <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-sm leading-relaxed">
-              {description}
+ <p>className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-black"              {description}
             </p>
             <div className="flex items-center gap-4">
               {socials.map((social, idx) => (
@@ -37,9 +36,9 @@ const Footer = ({
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
                   aria-label={social.label}
-                >
+className="p-2.5 bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-black"               
+>   
                   {social.icon}
                 </a>
               ))}
@@ -66,6 +65,7 @@ const Footer = ({
                       ) : (
                         <a 
                           href={item.href}
+                          aria-label={`Open ${item.label}`}
                           className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -87,9 +87,15 @@ const Footer = ({
             © {companyInfo.year} {companyInfo.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Terms of Service</a>
-          </div>
+<a
+  href="#" aria-label="Privacy Policy"
+  className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+></a>         
+<a
+  href="#" aria-label="Terms Of Service"
+  className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+></a>       
+   </div>
         </div>
       </div>
     </footer>
