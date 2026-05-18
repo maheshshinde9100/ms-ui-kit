@@ -27,8 +27,7 @@ const Navbar = ({
 
     const navItems = links.map((link, index) => {
         const isInternal = link.href.startsWith('/');
-        const commonClasses = "text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
-        
+       const commonClasses = "text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black"; 
         if (isInternal) {
             return (
                 <Link key={index} to={link.href} className={commonClasses}>
@@ -37,9 +36,9 @@ const Navbar = ({
             );
         }
         return (
-            <a key={index} href={link.href} className={commonClasses} target="_blank" rel="noopener noreferrer">
-                {link.label}
-            </a>
+<a key={index}  href={link.href}  aria-label={`Open ${link.label}`}
+  className={commonClasses} target="_blank" rel="noopener noreferrer"
+>  {link.label}  </a>
         );
     });
 
@@ -55,7 +54,10 @@ const Navbar = ({
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 group">
+                <Link to="/"
+  aria-label="Go to homepage"
+  className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+>
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
                         <Layers className="text-white" size={24} />
                     </div>
@@ -79,15 +81,16 @@ const Navbar = ({
                             <Avatar src={user.avatar} name={user.name} size="md" status="online" bordered />
                         </div>
                     ) : (
-                        <button className="px-5 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
-                            Get Started
+                      <button aria-label="Get started"
+  className="px-5 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+>      Get Started
                         </button>
                     )}
                 </div>
 
                 {/* Mobile Menu Icon */}
-                <button className="md:hidden p-2 text-gray-600 dark:text-gray-400">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<button aria-label="Open navigation menu"
+  className="md:hidden p-2 text-gray-600 dark:text-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-black">                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>

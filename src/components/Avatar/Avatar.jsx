@@ -51,15 +51,14 @@ const Avatar = ({
   `;
 
     return (
-        <div className={baseClasses} {...props}>
-            {src ? (
-                <img src={src} alt={alt} className="w-full h-full object-cover" />
-            ) : (
-                <span>{getInitials(name) || alt[0]}</span>
+<div className={baseClasses} role="img" aria-label={name ? `${name}'s avatar` : alt}  {...props}>            {src ? (
+<img src={src} alt={name ? `${name}'s avatar` : alt}
+  className="w-full h-full object-cover"/>            ) : (
+                <span aria-hidden="true">{getInitials(name) || alt[0]}</span>
             )}
 
             {status && (
-                <span
+                <span aria-hidden="true"
                     className={`
             absolute border-2 border-white dark:border-gray-900 rounded-full
             ${statusColors[status]}
