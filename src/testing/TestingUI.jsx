@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BackToTop from "../components/BackToTop";
 import {
     Button,
     Card,
@@ -688,6 +689,7 @@ const TestingUI = () => {
                     </div>
                 </div>
             </Drawer>
+            <BackToTop />
         </div>
     );
 };

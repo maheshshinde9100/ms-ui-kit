@@ -5,6 +5,7 @@ import DeveloperPage from './pages/DeveloperPage';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './components';
 
+
 function App() {
   return (
     <ThemeProvider>
@@ -15,7 +16,9 @@ function App() {
               <Route path="/" element={<TestingUI />} />
               <Route path="/developer" element={<DeveloperPage />} />
             </Routes>
+         
           </div>
+         
         </Router>
       </ToastProvider>
     </ThemeProvider>
