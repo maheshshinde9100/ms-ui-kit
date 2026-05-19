@@ -4,7 +4,7 @@ import TestingUI from './testing/TestingUI';
 import DeveloperPage from './pages/DeveloperPage';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './components';
-import BackToTop from "./components/BackToTop";
+
 
 function App() {
   return (
