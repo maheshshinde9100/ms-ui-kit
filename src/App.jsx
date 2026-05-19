@@ -12,7 +12,6 @@ function App() {
       <ToastProvider>
         <Router>
           <div className="bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
-             <BackToTop />
             <Routes>
               <Route path="/" element={<TestingUI />} />
               <Route path="/developer" element={<DeveloperPage />} />
