@@ -31,6 +31,7 @@ import {
     CommandPalette,
     FileUpload,
     DatePicker,
+    TypewriterEffect,
     useToast
 } from '../components';
 import {
@@ -574,6 +575,16 @@ const TestingUI = () => {
                                         >
                                             <div className="w-full max-w-sm">
                                                 <DatePicker selected={selectedDate} onChange={setSelectedDate} />
+                                            </div>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase
+                                            title="Typewriter Effect"
+                                            description="Animated typing text effect"
+                                            code={`<TypewriterEffect texts={['Hello!', 'Welcome to MS UI Kit.']} />`}
+                                        >
+                                            <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                                                <TypewriterEffect texts={['Hello!', 'Welcome to MS UI Kit.']} />
                                             </div>
                                         </ComponentShowcase>
                                     </div>
