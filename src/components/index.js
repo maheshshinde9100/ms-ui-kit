@@ -32,3 +32,5 @@ export { default as CommandPalette } from './CommandPalette';
 export { default as FileUpload } from './FileUpload';
 export { default as DatePicker } from './DatePicker';
 export { default as TypewriterEffect } from './TypewriterEffect';
+export { default as OTPInput } from './OTPInput';
+

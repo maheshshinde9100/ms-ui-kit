@@ -32,6 +32,7 @@ import {
     FileUpload,
     DatePicker,
     TypewriterEffect,
+    OTPInput,
     useToast
 } from '../components';
 import {
@@ -135,6 +136,7 @@ const TestingUI = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isCommandOpen, setIsCommandOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [otpCode, setOtpCode] = useState('');
     const toast = useToast();
 
     const navLinks = [
@@ -357,6 +359,58 @@ const TestingUI = () => {
                                                         <Switch checked={switchState} onChange={setSwitchState} label="Enable Feature" />
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </ComponentShowcase>
+
+                                        <ComponentShowcase
+                                            title="OTP Input"
+                                            description="Premium verification code field with backspace, paste, and navigation support"
+                                            code={`<OTPInput\n  length={6}\n  variant="outline"\n  size="md"\n  onComplete={(code) => toast.success(\`OTP Completed: \${code}\`)}\n/>`}
+                                        >
+                                            <div className="flex flex-col gap-6 items-start w-full">
+                                                <div className="w-full">
+                                                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase block mb-2">Outline Variant (6 Digits)</span>
+                                                    <OTPInput
+                                                        length={6}
+                                                        variant="outline"
+                                                        size="md"
+                                                        onComplete={(code) => {
+                                                            setOtpCode(code);
+                                                            toast.success(`OTP Completed: ${code}`);
+                                                        }}
+                                                        onChange={(val) => setOtpCode(val)}
+                                                    />
+                                                </div>
+
+                                                <div className="w-full">
+                                                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase block mb-2">Filled Variant (4 Digits, Alphanumeric)</span>
+                                                    <OTPInput
+                                                        length={4}
+                                                        variant="filled"
+                                                        size="lg"
+                                                        otpType="text"
+                                                        placeholder="-"
+                                                        onComplete={(code) => toast.info(`Alphanumeric OTP: ${code}`)}
+                                                    />
+                                                </div>
+
+                                                <div className="w-full">
+                                                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase block mb-2">Glass Variant (5 Digits)</span>
+                                                    <div className="p-4 bg-gray-950/20 dark:bg-gray-900/50 rounded-2xl w-full flex justify-center border border-gray-200/10 dark:border-gray-800/55">
+                                                        <OTPInput
+                                                            length={5}
+                                                            variant="glass"
+                                                            size="md"
+                                                            onComplete={(code) => toast.success(`Glass OTP: ${code}`)}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                {otpCode && (
+                                                    <div className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                                        Current OTP: <span className="font-mono text-blue-600 dark:text-blue-400 font-bold bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/30 px-2.5 py-1 rounded-lg">{otpCode}</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </ComponentShowcase>
                                     </div>
