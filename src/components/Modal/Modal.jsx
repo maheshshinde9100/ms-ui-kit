@@ -7,14 +7,15 @@ import { X } from 'lucide-react';
  * A premium dialog component with glassmorphism and animations
  */
 const Modal = ({
-    isOpen,
-    onClose,
-    title,
-    children,
-    footer,
-    size = 'md', // sm, md, lg, xl, full
-    closeOnBackdrop = true,
-    className = '',
+  isOpen,
+  onClose,
+  title,
+  children,
+  footer,
+  size = 'md',
+  closeOnBackdrop = true,
+  className = '',
+  style = {}, // ADD
 }) => {
     useEffect(() => {
         if (isOpen) {
@@ -49,19 +50,23 @@ const Modal = ({
                     />
 
                     {/* Modal Container */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                        className={`
-                            relative w-full bg-white dark:bg-gray-900 
-                            rounded-3xl shadow-2xl border border-white/20 dark:border-gray-800
-                            flex flex-col overflow-hidden
-                            ${sizes[size]}
-                            ${className}
-                        `}
-                    >
+<motion.div
+  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+  animate={{ opacity: 1, scale: 1, y: 0 }}
+  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+  transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+  style={style}
+  className={`
+    relative w-full
+    bg-white dark:bg-gray-900
+    rounded-3xl
+    shadow-2xl
+    border border-white/20 dark:border-gray-800
+    flex flex-col overflow-hidden
+    ${sizes[size]}
+    ${className}
+  `}
+>
                         {/* Header */}
                         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800">
                             <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">

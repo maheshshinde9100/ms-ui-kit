@@ -30,4 +30,5 @@ export { ToastProvider, useToast } from './Toast';
 export { default as Drawer } from './Drawer';
 export { default as CommandPalette } from './CommandPalette';
 export { default as FileUpload } from './FileUpload';
+export { default as ThemeBuilder } from './ThemeBuilder/ThemeBuilder';
 export { default as DatePicker } from './DatePicker';

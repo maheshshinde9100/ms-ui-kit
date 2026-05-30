@@ -68,7 +68,7 @@ import {
     Command as CommandIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import ThemeBuilder from "../components/ThemeBuilder/ThemeBuilder";
 const ComponentShowcase = ({ title, children, code, description }) => {
     const [copied, setCopied] = useState(false);
     const [showCode, setShowCode] = useState(false);
