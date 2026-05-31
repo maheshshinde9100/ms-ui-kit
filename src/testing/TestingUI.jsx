@@ -155,6 +155,7 @@ const TestingUI = () => {
         { id: 'navigation', label: 'Navigation', icon: <Layout size={18} /> },
         { id: 'data', label: 'Data Display', icon: <Code size={18} /> },
         { id: 'advanced', label: 'Advanced UI', icon: <TerminalSquare size={18} /> },
+        {id: 'themebuilder',label: 'Theme Builder',icon: <Settings size={18} />},
         { id: 'overlays', label: 'Overlays & Toasts', icon: <Bell size={18} /> },
     ];
 
@@ -611,7 +612,18 @@ const TestingUI = () => {
                                     </div>
                                 </section>
                             )}
+                            {isVisible('themebuilder') && (
+  <section className="space-y-8">
+    <h2 className="text-2xl font-black text-gray-900 dark:text-white flex items-center gap-3">
+      <Settings className="text-cyan-500" />
+      Theme Builder
+    </h2>
+
+    <ThemeBuilder />
+  </section>
+)}
                         </div>
+                        
                     </main>
                 </div>
             </div>
