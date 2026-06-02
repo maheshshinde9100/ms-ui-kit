@@ -31,3 +31,4 @@ export { default as Drawer } from './Drawer';
 export { default as CommandPalette } from './CommandPalette';
 export { default as FileUpload } from './FileUpload';
 export { default as DatePicker } from './DatePicker';
+export { default as CopyToClipboard } from './CopyToClipboard';
