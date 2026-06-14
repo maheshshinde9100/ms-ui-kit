@@ -1,0 +1,32 @@
+{
+  "name": "ms-ui-kit",
+  "displayName": "MS UI KIT",
+  "description": "VSCode extension for MS-UI-KIT - access and copy React components directly",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ms-ui-kit.showComponents",
+        "title": "MS UI KIT: Show Components"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "eslint": "^8.45.0"
+  }
+}
