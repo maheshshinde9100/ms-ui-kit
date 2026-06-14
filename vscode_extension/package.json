@@ -1,14 +1,41 @@
 {
   "name": "ms-ui-kit",
   "displayName": "MS UI KIT",
-  "description": "VSCode extension for MS-UI-KIT - access and copy React components directly",
-  "version": "0.0.1",
+  "description": "Professional React component library extension - insert components directly at your cursor",
+  "version": "1.0.0",
+  "publisher": "maheshshinde9100",
+  "author": {
+    "name": "Mahesh Shinde",
+    "url": "https://maheshshinde-dev.vercel.app/"
+  },
+  "license": "MIT",
+  "icon": "icon.svg",
+  "galleryBanner": {
+    "color": "#3b82f6",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maheshshinde9100/ms-ui-kit"
+  },
+  "homepage": "https://maheshshinde-dev.vercel.app/",
+  "bugs": {
+    "url": "https://github.com/maheshshinde9100/ms-ui-kit/issues"
+  },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.74.0"
   },
   "categories": [
     "Snippets",
+    "Programming Languages",
     "Other"
+  ],
+  "keywords": [
+    "react",
+    "components",
+    "ui-kit",
+    "tailwind",
+    "ms-ui-kit"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -17,16 +44,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "ms-ui-kit.showComponents",
-        "title": "MS UI KIT: Show Components"
+        "command": "ms-ui-kit.insertComponent",
+        "title": "MS UI KIT: Insert Component",
+        "icon": {
+          "light": "assets/icon-light.png",
+          "dark": "assets/icon-dark.png"
+        }
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "ms-ui-kit.insertComponent",
+          "when": "editorLangId == javascriptreact || editorLangId == typescriptreact"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
+    "@types/vscode": "^1.74.0",
     "eslint": "^8.45.0"
   }
 }
