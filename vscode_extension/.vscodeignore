@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.eslintrc.json
+generateComponentsData.js
+list-components.js
+node_modules
+.vscodeignore
+assets
+public
+icon.svg
+package-lock.json
