@@ -8,3 +8,6 @@ list-components.js
 node_modules
 .vscodeignore
 assets
+public
+icon.svg
+package-lock.json
