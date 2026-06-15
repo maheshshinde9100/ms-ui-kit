@@ -4,5 +4,7 @@ src/**
 .gitignore
 .eslintrc.json
 generateComponentsData.js
+list-components.js
 node_modules
 .vscodeignore
+assets

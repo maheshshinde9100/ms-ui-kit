@@ -1,6 +1,8 @@
 # MS UI KIT - VSCode Extension
 
-Professional VSCode extension for MS-UI-KIT that lets you insert React components directly at your cursor position with just a few clicks!
+Official VSCode extension for [ms-ui-kit](https://www.npmjs.com/package/ms-ui-kit) - the professional React component library. Insert components directly at your cursor position with just a few clicks!
+
+Install ms-ui-kit first with: `npm install ms-ui-kit`
 
 ## Features
 
