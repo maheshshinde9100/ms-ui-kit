@@ -2,7 +2,7 @@
   "name": "ms-ui-kit",
   "displayName": "MS UI KIT",
   "description": "Professional React component library extension - insert components directly at your cursor (from ms-ui-kit npm package)",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "publisher": "maheshshinde9100",
   "author": {
     "name": "Mahesh Shinde",
@@ -45,9 +45,21 @@
     "commands": [
       {
         "command": "ms-ui-kit.insertComponent",
-        "title": "MS UI KIT: Insert Component"
+        "title": "MS UI KIT: Insert Component",
+        "icon": {
+          "light": "assets/icon-light.png",
+          "dark": "assets/icon-dark.png"
+        }
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "ms-ui-kit.insertComponent",
+          "when": "editorLangId == javascriptreact || editorLangId == typescriptreact"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint ."
