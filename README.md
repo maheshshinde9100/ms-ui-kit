@@ -7,6 +7,7 @@ Built with **React, Vite, and Tailwind CSS**.
 [![npm version](https://img.shields.io/npm/v/ms-ui-kit?color=6366f1&label=npm)](https://www.npmjs.com/package/ms-ui-kit)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-maheshshinde9100%2Fms--ui--kit-blue?logo=github)](https://github.com/maheshshinde9100/ms-ui-kit)
+[![VS Code Extension](https://img.shields.io/badge/VS_Code-Extension-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=maheshshinde9100.ms-ui-kit)
 
 ---
 
