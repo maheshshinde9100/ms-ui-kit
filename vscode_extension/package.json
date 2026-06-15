@@ -2,14 +2,14 @@
   "name": "ms-ui-kit",
   "displayName": "MS UI KIT",
   "description": "Professional React component library extension - insert components directly at your cursor (from ms-ui-kit npm package)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "maheshshinde9100",
   "author": {
     "name": "Mahesh Shinde",
     "url": "https://maheshshinde-dev.vercel.app/"
   },
   "license": "MIT",
-  "icon": "/public/icon.png",
+  "icon": "icon.png",
   "galleryBanner": {
     "color": "#3b82f6",
     "theme": "dark"
