@@ -34,9 +34,8 @@ npm install ms-ui-kit
 
 > **Peer dependencies** — make sure your project already has these:
 > ```bash
-> npm install react react-dom
+> npm install react react-dom framer-motion lucide-react
 > ```
-
 ---
 
 ## Quick Start
