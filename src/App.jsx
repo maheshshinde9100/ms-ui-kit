@@ -4,6 +4,7 @@ import TestingUI from './testing/TestingUI';
 import DeveloperPage from './pages/DeveloperPage';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './components';
+import { Landing } from './pages/LandingPage';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Router>
           <div className="bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
             <Routes>
-              <Route path="/" element={<TestingUI />} />
+            <Route path="/" element={<Landing/>} />
+              <Route path="/components" element={<TestingUI />} />
               <Route path="/developer" element={<DeveloperPage />} />
             </Routes>
           </div>
