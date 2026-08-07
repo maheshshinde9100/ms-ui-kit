@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers } from 'lucide-react';
 import Avatar from '../Avatar';
-
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import CursorSelector from '../CustomCursor/CursorSelector';
 
 /**
  * ms-ui-kit Navbar Component
@@ -14,6 +14,8 @@ const Navbar = ({
     links = [],
     user,
     className = '',
+    cursorStyle,
+    onCursorChange,
 }) => {
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -69,6 +71,12 @@ const Navbar = ({
                     {navItems}
                     
                     <ThemeToggle />
+                    {onCursorChange && (
+                        <CursorSelector 
+                            currentStyle={cursorStyle} 
+                            onStyleChange={onCursorChange} 
+                        />
+                    )}
 
                     {user ? (
                         <div className="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Button,
     Card,
@@ -70,6 +70,7 @@ import {
     Command as CommandIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { UIProvider, CustomCursor } from '../components';
 
 const ComponentShowcase = ({ title, children, code, description }) => {
     const [copied, setCopied] = useState(false);
@@ -138,7 +139,16 @@ const TestingUI = () => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [otpCode, setOtpCode] = useState('');
     const toast = useToast();
+const [cursorStyle, setCursorStyle] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('ms-ui-cursor-style') || 'default';
+        }
+        return 'default';
+    });
 
+    useEffect(() => {
+        localStorage.setItem('ms-ui-cursor-style', cursorStyle);
+    }, [cursorStyle]);
     const navLinks = [
         { label: 'Components', href: '/' },
         { label: 'Developer', href: '/developer' },
@@ -205,7 +215,14 @@ const TestingUI = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans transition-colors duration-500">
-            <Navbar logo="MS UI KIT" links={navLinks} user={user} />
+            <CustomCursor style={cursorStyle} />
+            <Navbar 
+    logo="MS UI KIT" 
+    links={navLinks} 
+    user={user} 
+    cursorStyle={cursorStyle} 
+    onCursorChange={setCursorStyle} 
+/>
 
             <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
                 <div className="flex flex-col lg:flex-row gap-12">
