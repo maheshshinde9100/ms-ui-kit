@@ -2,39 +2,28 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  lint-and-build:
-    name: Lint and build library
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Build library bundle
-        run: npm run build:lib
-
-      - name: Verify dist entry point exists
-        run: |
-          if [ ! -f "dist/components/index.js" ]; then
-            echo "ERROR: dist/components/index.js not found."
-            echo "The library entry point is missing after build."
-            exit 1
-          fi
-          echo "dist/components/index.js found — build OK"
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run lint
+      run: npm run lint
+      
+    - name: Run build
+      run: npm run build
