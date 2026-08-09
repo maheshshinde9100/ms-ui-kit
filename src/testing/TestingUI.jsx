@@ -305,18 +305,18 @@ const [cursorStyle, setCursorStyle] = useState(() => {
                                         </div>
                                     </Card>
                                     <div className="space-y-8">
-                                        <Card className="p-6 bg-blue-600 text-white shadow-xl shadow-blue-500/20">
+                                        <Card className="p-6 shadow-xl shadow-blue-500/20">
                                             <div className="flex justify-between items-start mb-4">
                                                 <div className="p-2 bg-white/20 rounded-lg"><Zap size={20} /></div>
-                                                <Badge variant="success" className="bg-white/20 text-white border-transparent">v0.2</Badge>
+                                                <Badge variant="success" >v0.2</Badge>
                                             </div>
                                             <h4 className="font-bold text-lg mb-1">Fast Performance</h4>
                                             <p className="text-sm opacity-80">Optimized for 60fps animations.</p>
                                         </Card>
-                                        <Card className="p-6 bg-purple-600 text-white shadow-xl shadow-purple-500/20">
+                                        <Card className="p-6 shadow-xl shadow-purple-500/20">
                                             <div className="flex justify-between items-start mb-4">
                                                 <div className="p-2 bg-white/20 rounded-lg"><Layout size={20} /></div>
-                                                <Badge variant="premium" className="bg-white/20 text-white border-transparent">NEW</Badge>
+                                                <Badge variant="secondary" >NEW</Badge>
                                             </div>
                                             <h4 className="font-bold text-lg mb-1">Responsive Design</h4>
                                             <p className="text-sm opacity-80">Works on every screen size.</p>
