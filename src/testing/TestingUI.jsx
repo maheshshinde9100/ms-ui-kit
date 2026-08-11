@@ -137,6 +137,7 @@ const TestingUI = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isCommandOpen, setIsCommandOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [otpCode, setOtpCode] = useState('');
     const toast = useToast();
 const [cursorStyle, setCursorStyle] = useState(() => {
@@ -150,7 +151,7 @@ const [cursorStyle, setCursorStyle] = useState(() => {
         localStorage.setItem('ms-ui-cursor-style', cursorStyle);
     }, [cursorStyle]);
     const navLinks = [
-        { label: 'Components', href: '/' },
+        { label: 'Components', href: '/components' },
         { label: 'Developer', href: '/developer' },
         { label: 'GitHub', href: 'https://github.com/maheshshinde9100/ms-ui-kit' },
     ];
@@ -225,15 +226,51 @@ const [cursorStyle, setCursorStyle] = useState(() => {
 />
 
             <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+                <button
+                    className="lg:hidden mb-6 flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm"
+                    onClick={() => setIsSidebarOpen(true)}
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    Categories
+                </button>
+
                 <div className="flex flex-col lg:flex-row gap-12">
+                    {/* Backdrop — mobile/tablet only, shown when sidebar open */}
+                    {isSidebarOpen && (
+                        <div
+                            className="lg:hidden fixed inset-0 bg-black/50 z-40"
+                            onClick={() => setIsSidebarOpen(false)}
+                        />
+                    )}
+
                     {/* Sidebar */}
-                    <aside className="lg:w-64 flex-shrink-0">
-                        <div className="sticky top-32 space-y-2">
-                            <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest px-4 mb-4">Categories</h2>
+                    <aside
+                    className={`
+                        lg:w-64 lg:flex-shrink-0 lg:static lg:translate-x-0
+                        lg:bg-transparent lg:dark:bg-transparent
+                        fixed top-0 left-0 h-full w-72 bg-white dark:bg-gray-950 z-50
+                        transition-transform duration-300 ease-in-out
+                        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                        <div className="sticky lg:top-32 p-6 lg:p-0 space-y-2">
+                        <div className="flex items-center justify-between lg:hidden mb-4">
+                            <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Categories</h2>
+                            <button onClick={() => setIsSidebarOpen(false)} className="p-1 text-gray-500">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <h2 className="hidden lg:block text-xs font-bold text-gray-400 uppercase tracking-widest px-4 mb-4">Categories</h2>
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
-                                    onClick={() => setActiveCategory(cat.id)}
+                                    onClick={() => {
+                                        setActiveCategory(cat.id)
+                                        setIsSidebarOpen(false);
+                                    }}
                                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all duration-200 ${activeCategory === cat.id
                                             ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 translate-x-1'
                                             : 'text-gray-500 hover:bg-gray-200/50 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-white'
