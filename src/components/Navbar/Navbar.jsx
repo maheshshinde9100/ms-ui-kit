@@ -9,6 +9,7 @@ import CursorSelector from '../CustomCursor/CursorSelector';
  * ms-ui-kit Navbar Component
  * A premium sticky navigation bar with glassmorphism
  */
+
 const Navbar = ({
     logo = 'ms-ui-kit',
     links = [],
@@ -16,9 +17,10 @@ const Navbar = ({
     className = '',
     cursorStyle,
     onCursorChange,
+    mobileVariant='menu',
 }) => {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const [isOpen,setIsOpen] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -93,12 +95,43 @@ const Navbar = ({
                     )}
                 </div>
 
-                {/* Mobile Menu Icon */}
-                <button className="md:hidden p-2 text-gray-600 dark:text-gray-400">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+                 {/* Mobile — NEW: branches based on mobileVariant */}
+                {mobileVariant === 'menu' ? (
+                    <>
+                        <button 
+                            className="md:hidden p-2 text-gray-600 dark:text-gray-400"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+
+                        {isOpen && (
+                            <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800 shadow-lg p-6 flex flex-col gap-4 z-50">
+                                {navItems}
+                                <ThemeToggle />
+                                {user ? (
+                                    <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
+                                        <Avatar src={user.avatar} name={user.name} size="md" status="online" bordered />
+                                        <div>
+                                            <p className="text-sm font-bold text-gray-900 dark:text-white leading-none">{user.name}</p>
+                                            <p className="text-xs text-gray-500 mt-1">{user.role}</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <button className="w-full px-5 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
+                                        Get Started
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <button className="md:hidden px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
+                        Get Started
+                    </button>
+                )}
             </div>
         </nav>
     );

@@ -29,7 +29,8 @@ export const Landing = () => {
         logo="MS UI KIT" 
         links={navLinks} 
         cursorStyle={cursorStyle} 
-        onCursorChange={setCursorStyle} 
+        onCursorChange={setCursorStyle}
+        mobileVariant="cta"
       />
 
       <div className="absolute inset-0">

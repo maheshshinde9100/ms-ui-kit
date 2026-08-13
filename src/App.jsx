@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TestingUI from './testing/TestingUI';
 import DeveloperPage from './pages/DeveloperPage';
@@ -17,16 +17,13 @@ const DemoPlugin = {
 };
 
 function App() {
-  const [cursorStyle, setCursorStyle] = useState(() => {
+  const [cursorStyle] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('ms-ui-cursor-style') || 'default';
     }
     return 'default';
   });
 
-  useEffect(() => {
-    localStorage.setItem('ms-ui-cursor-style', cursorStyle);
-  }, [cursorStyle]);
 
   return (
     <UIProvider plugins={[DemoPlugin]}>
