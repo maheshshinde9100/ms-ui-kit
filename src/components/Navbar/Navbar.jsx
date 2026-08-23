@@ -52,7 +52,7 @@ const Navbar = ({
             className={`
         fixed top-0 left-0 right-0 z-40 transition-all duration-300
         ${isScrolled
-                    ? 'py-3 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 shadow-sm'
+                    ? 'py-3 bg-white/70 dark:bg-gray-950/70 backdrop-blur-2xl border-b border-gray-100 dark:border-gray-800 shadow-sm'
                     : 'py-6 bg-transparent'}
         ${className}
       `}
