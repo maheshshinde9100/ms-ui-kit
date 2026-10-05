@@ -250,7 +250,7 @@ const [cursorStyle, setCursorStyle] = useState(() => {
                     className={`
                         lg:w-64 lg:flex-shrink-0 lg:static lg:translate-x-0
                         lg:bg-transparent lg:dark:bg-transparent
-                        fixed top-0 left-0 h-full w-72 bg-white dark:bg-gray-950 z-50
+                        fixed top-0 left-0 h-full w-72 bg-white dark:bg-gray-950 z-50 lg:z-30
                         transition-transform duration-300 ease-in-out
                         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                         <div className="sticky lg:top-32 p-6 lg:p-0 space-y-2">
