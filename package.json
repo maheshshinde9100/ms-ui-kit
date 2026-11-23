@@ -47,7 +47,8 @@
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.577.0",
     "prop-types": "^15.8.1",
-    "react-router-dom": "^6.30.3"
+    "react-router-dom": "^6.30.3",
+    "react-simple-typewriter": "^5.0.1"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -63,6 +64,8 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "rollup-plugin-visualizer": "^7.0.1",
     "tailwindcss": "^4.1.17",
     "vite": "^7.2.4"

@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TestingUI from './testing/TestingUI';
 import DeveloperPage from './pages/DeveloperPage';
-import { ThemeProvider } from './context/ThemeContext';
-import { ToastProvider } from './components';
+import { UIProvider, CustomCursor } from './components';
+import { Landing } from './pages/LandingPage';
+
+const DemoPlugin = {
+  name: 'demo',
+  install(api) {
+    api.extendTheme({
+      colors: {
+        brand: '#7C3AED',
+      },
+    });
+  },
+};
 
 function App() {
+  const [cursorStyle] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('ms-ui-cursor-style') || 'default';
+    }
+    return 'default';
+  });
+
+
   return (
     <ThemeProvider>
       <ToastProvider>

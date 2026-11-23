@@ -33,4 +33,8 @@ export { default as FileUpload } from './FileUpload';
 export { default as DatePicker } from './DatePicker';
 export { default as TypewriterEffect } from './TypewriterEffect';
 export { default as OTPInput } from './OTPInput';
+export { PluginProvider, usePlugins, useComponent, usePluginHook, usePluginUtil, usePluginTheme } from '../context/PluginContext';
+export { default as UIProvider } from '../context/UIProvider';
 
+export { default as CustomCursor } from './CustomCursor/CustomCursor';
+export { default as CursorSelector } from './CustomCursor/CursorSelector';

@@ -3,18 +3,22 @@ import { Link } from 'react-router-dom';
 import { Layers, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Avatar from '../Avatar';
-
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import CursorSelector from '../CustomCursor/CursorSelector';
 
 /**
  * ms-ui-kit Navbar Component
  * A quiet sticky header with hairline chrome and a mobile sheet
  */
+
 const Navbar = ({
     logo = 'ms-ui-kit',
     links = [],
     user,
     className = '',
+    cursorStyle,
+    onCursorChange,
+    mobileVariant='menu',
 }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
