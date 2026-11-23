@@ -10,7 +10,7 @@ function App() {
     <ThemeProvider>
       <ToastProvider>
         <Router>
-          <div className="bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
+          <div className="min-h-screen bg-paper text-ink transition-colors duration-300">
             <Routes>
               <Route path="/" element={<TestingUI />} />
               <Route path="/developer" element={<DeveloperPage />} />

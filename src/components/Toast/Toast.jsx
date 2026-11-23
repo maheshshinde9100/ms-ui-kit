@@ -51,36 +51,30 @@ export const useToast = () => {
 
 const ToastItem = ({ type, message, onRemove }) => {
     const icons = {
-        success: <CheckCircle2 className="text-emerald-500" size={20} />,
-        error: <AlertCircle className="text-rose-500" size={20} />,
-        info: <Info className="text-blue-500" size={20} />,
-        warning: <AlertTriangle className="text-amber-500" size={20} />,
-    };
-
-    const bgColors = {
-        success: 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-100 dark:border-emerald-900/50',
-        error: 'bg-rose-50 dark:bg-rose-950/30 border-rose-100 dark:border-rose-900/50',
-        info: 'bg-blue-50 dark:bg-blue-950/30 border-blue-100 dark:border-blue-900/50',
-        warning: 'bg-amber-50 dark:bg-amber-950/30 border-amber-100 dark:border-amber-900/50',
+        success: <CheckCircle2 className="text-emerald-600 dark:text-emerald-400" size={18} />,
+        error: <AlertCircle className="text-red-500" size={18} />,
+        info: <Info className="text-accent-ink" size={18} />,
+        warning: <AlertTriangle className="text-amber-500" size={18} />,
     };
 
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
+            initial={{ opacity: 0, x: 50, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
-            className={`pointer-events-auto flex items-center gap-4 px-4 py-3 rounded-2xl border shadow-xl min-w-[300px] max-w-md ${bgColors[type]}`}
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+            className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border border-line bg-surface shadow-[0_12px_40px_rgba(10,10,10,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] min-w-[280px] max-w-md"
         >
             <div className="flex-shrink-0">{icons[type]}</div>
-            <p className="flex-1 text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">
+            <p className="flex-1 text-[13px] font-medium text-ink leading-snug">
                 {message}
             </p>
             <button
                 onClick={onRemove}
-                className="flex-shrink-0 p-1 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
+                aria-label="Dismiss"
+                className="flex-shrink-0 grid h-7 w-7 place-items-center rounded-full text-faint hover:bg-surface-2 hover:text-ink transition-colors"
             >
-                <X size={16} className="text-gray-400" />
+                <X size={14} />
             </button>
         </motion.div>
     );

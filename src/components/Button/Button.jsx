@@ -40,114 +40,76 @@ const Button = ({
   // Base classes that apply to all buttons
   const baseClasses = `
     inline-flex items-center justify-center
-    font-medium font-sans
-    transition-all duration-200 ease-in-out
-    focus:outline-none focus:ring-2 focus:ring-offset-2
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
-    rounded-lg
+    font-medium font-sans whitespace-nowrap
+    transition-[background-color,border-color,color,opacity,transform] duration-200 ease-out
+    disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none
+    rounded-full
     select-none
-    active:scale-[0.98]
+    active:scale-[0.985]
   `;
 
   // Variant styles
   const variantClasses = {
-    // Primary - Solid blue (default)
+    // Primary - ink solid (inverts with the theme)
     primary: `
-      bg-gradient-to-r from-blue-500 to-blue-600
-      hover:from-blue-600 hover:to-blue-700
-      active:from-blue-700 active:to-blue-800
-      text-white
-      shadow-md hover:shadow-lg
-      focus:ring-blue-500/50
-      border border-blue-600
+      bg-ink text-paper
+      hover:opacity-90
     `,
 
-    // Secondary - Light gray
+    // Secondary - quiet filled surface
     secondary: `
-      bg-gradient-to-r from-gray-100 to-gray-200
-      dark:from-gray-800 dark:to-gray-900
-      hover:from-gray-200 hover:to-gray-300
-      dark:hover:from-gray-700 dark:hover:to-gray-800
-      active:from-gray-300 active:to-gray-400
-      dark:active:from-gray-600 dark:active:to-gray-700
-      text-gray-800 dark:text-gray-100
-      shadow-sm hover:shadow
-      focus:ring-gray-400/50
-      border border-gray-300 dark:border-gray-700
+      bg-surface-2 text-ink
+      border border-line
+      hover:border-line-strong
     `,
 
-    // Outline - Border only
+    // Outline - hairline border only
     outline: `
       bg-transparent
-      hover:bg-gray-50 dark:hover:bg-gray-900
-      active:bg-gray-100 dark:active:bg-gray-800
-      text-gray-700 dark:text-gray-300
-      border-2 border-gray-300 dark:border-gray-700
-      hover:border-gray-400 dark:hover:border-gray-600
-      focus:ring-gray-400/30
+      text-ink
+      border border-line-strong
+      hover:bg-surface-2 hover:border-ink/40
     `,
 
-    // Ghost - Minimal
+    // Ghost - text only
     ghost: `
       bg-transparent
-      hover:bg-gray-100 dark:hover:bg-gray-800/50
-      active:bg-gray-200 dark:active:bg-gray-700/50
-      text-gray-700 dark:text-gray-400
-      focus:ring-gray-400/30
+      text-ink-soft
+      hover:bg-surface-2 hover:text-ink
     `,
 
-    // Danger - Red for destructive actions
+    // Danger - red for destructive actions
     danger: `
-      bg-gradient-to-r from-red-500 to-red-600
-      hover:from-red-600 hover:to-red-700
-      active:from-red-700 active:to-red-800
-      text-white
-      shadow-md hover:shadow-lg
-      focus:ring-red-500/50
-      border border-red-600
+      bg-red-600 text-white
+      hover:bg-red-700
     `,
 
-    // Success - Green for positive actions
+    // Success - green for positive actions
     success: `
-      bg-gradient-to-r from-emerald-500 to-emerald-600
-      hover:from-emerald-600 hover:to-emerald-700
-      active:from-emerald-700 active:to-emerald-800
-      text-white
-      shadow-md hover:shadow-lg
-      focus:ring-emerald-500/50
-      border border-emerald-600
+      bg-emerald-600 text-white
+      hover:bg-emerald-700
     `,
 
-    // Warning - Orange for caution
+    // Warning - amber for caution
     warning: `
-      bg-gradient-to-r from-amber-500 to-amber-600
-      hover:from-amber-600 hover:to-amber-700
-      active:from-amber-700 active:to-amber-800
-      text-white
-      shadow-md hover:shadow-lg
-      focus:ring-amber-500/50
-      border border-amber-600
+      bg-amber-500 text-ink
+      hover:bg-amber-400
     `,
 
-    // Premium - Purple gradient for special actions
+    // Premium - the single indigo accent
     premium: `
-      bg-gradient-to-r from-purple-500 to-purple-600
-      hover:from-purple-600 hover:to-purple-700
-      active:from-purple-700 active:to-purple-800
-      text-white
-      shadow-md hover:shadow-lg
-      focus:ring-purple-500/50
-      border border-purple-600
+      bg-accent text-white
+      hover:opacity-90
     `,
   };
 
   // Size styles
   const sizeClasses = {
-    xs: 'px-2.5 py-1.5 text-xs font-medium gap-1.5',
-    sm: 'px-3 py-2 text-sm gap-2',
-    md: 'px-4 py-2.5 text-sm gap-2.5',
-    lg: 'px-5 py-3 text-base gap-3',
-    xl: 'px-6 py-3.5 text-lg gap-3.5',
+    xs: 'px-3 py-1.5 text-[11px] font-medium gap-1.5',
+    sm: 'px-4 py-2 text-[13px] gap-2',
+    md: 'px-5 py-2.5 text-sm gap-2',
+    lg: 'px-6 py-3 text-[15px] gap-2.5',
+    xl: 'px-7 py-3.5 text-base gap-3',
   };
 
   // Handle click

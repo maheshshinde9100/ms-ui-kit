@@ -18,7 +18,8 @@ const Spinner = ({
     };
 
     const variants = {
-        primary: 'border-blue-600/20 border-t-blue-600',
+        primary: 'border-accent/20 border-t-accent',
+        premium: 'border-accent/20 border-t-accent',
         success: 'border-emerald-600/20 border-t-emerald-600',
         warning: 'border-amber-600/20 border-t-amber-600',
         danger: 'border-red-600/20 border-t-red-600',

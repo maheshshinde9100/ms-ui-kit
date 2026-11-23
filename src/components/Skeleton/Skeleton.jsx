@@ -8,7 +8,7 @@ const Skeleton = ({
   animate = true 
 }) => {
   const baseClasses = `
-    bg-gray-200 dark:bg-gray-800 
+    bg-surface-2
     ${animate ? 'animate-pulse' : ''}
     ${className}
   `;

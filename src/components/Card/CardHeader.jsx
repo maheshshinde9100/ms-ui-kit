@@ -26,7 +26,7 @@ const CardHeader = ({
     <div
       className={`
         px-6 pt-6 pb-4
-        ${divider ? 'border-b border-gray-200 dark:border-gray-700' : ''}
+        ${divider ? 'border-b border-line' : ''}
         ${className}
       `}
       {...props}
@@ -36,12 +36,12 @@ const CardHeader = ({
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             {title && (
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              <h3 className="text-[15px] font-semibold text-ink">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-[13px] text-ink-soft">
                 {subtitle}
               </p>
             )}

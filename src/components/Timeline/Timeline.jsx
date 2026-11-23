@@ -6,16 +6,16 @@ const TimelineItem = ({ title, date, description, dot, active = false }) => (
     initial={{ x: -20, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
     viewport={{ once: true }}
-    className="relative pl-8 pb-10 border-l-2 border-gray-100 dark:border-gray-800 last:pb-0"
+    className="relative pl-8 pb-10 border-l border-line last:pb-0"
   >
-    <div className={`absolute left-[-9px] top-0 w-4 h-4 rounded-full border-4 border-white dark:border-gray-950 transition-colors duration-300 ${active ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-700'}`}>
+    <div className={`absolute left-[-7px] top-0.5 w-3.5 h-3.5 rounded-full border-4 border-surface transition-colors duration-300 ${active ? 'bg-accent' : 'bg-line-strong'}`}>
       {dot}
     </div>
     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
-      <h4 className="text-lg font-bold text-gray-900 dark:text-white">{title}</h4>
-      <span className="text-xs font-bold text-blue-600 uppercase tracking-tighter">{date}</span>
+      <h4 className="text-[15px] font-semibold text-ink">{title}</h4>
+      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-accent-ink">{date}</span>
     </div>
-    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{description}</p>
+    <p className="text-ink-soft text-[13px] leading-relaxed">{description}</p>
   </motion.div>
 );
 

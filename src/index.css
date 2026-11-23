@@ -1,15 +1,24 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
 
-
+/* ------------------------------------------------------------------
+   Palette + motion primitives
+   A restrained editorial system: warm paper, near-black ink,
+   hairline rules, and one indigo accent. No glassmorphism, no glow.
+------------------------------------------------------------------- */
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Consolas, monospace;
+
+  --color-primary-50: #f0f0fe;
+  --color-primary-100: #e3e4fd;
+  --color-primary-500: #5b5fe0;
+  --color-primary-600: #4b4fd6;
+  --color-primary-700: #3d41c0;
+  --color-primary-800: #33369b;
+  --color-primary-900: #2c2e7c;
 
   --color-secondary-50: #f8fafc;
   --color-secondary-100: #f1f5f9;
@@ -43,28 +52,223 @@
     }
   }
 
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   --animate-shimmer: shimmer 2s infinite linear;
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-orbit: orbit 140s linear infinite;
 }
 
+/* ------------------------------------------------------------------
+   Semantic tokens — light (warm paper)
+------------------------------------------------------------------- */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --paper: #f5f3ee;
+  --surface: #fcfbf8;
+  --surface-2: #edeae2;
+  --ink: #191817;
+  --ink-soft: #68635a;
+  --ink-faint: #a29c90;
+  --line: #e3ded3;
+  --line-strong: #cfc8ba;
+  --accent: #4b4fd6;
+  --accent-ink: #4b4fd6;
+  --accent-soft: rgba(75, 79, 214, 0.07);
+  --accent-line: rgba(75, 79, 214, 0.28);
+  --code-bg: #101010;
+  --dot: #d9d3c7;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+/* ------------------------------------------------------------------
+   Semantic tokens — dark (near-black stage)
+------------------------------------------------------------------- */
+.dark {
+  --paper: #0a0a0a;
+  --surface: #101010;
+  --surface-2: #171716;
+  --ink: #eeece8;
+  --ink-soft: #948f85;
+  --ink-faint: #5f5b53;
+  --line: #232322;
+  --line-strong: #363532;
+  --accent: #6d70f0;
+  --accent-ink: #a2a4f7;
+  --accent-soft: rgba(109, 112, 240, 0.11);
+  --accent-line: rgba(109, 112, 240, 0.32);
+  --code-bg: #0d0d0d;
+  --dot: #2b2b29;
 }
 
-#root {
-  width: 100%;
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-code: var(--code-bg);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* A whisper of film grain keeps flat dark surfaces from feeling synthetic. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  #root {
+    width: 100%;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+    font-feature-settings: "liga" 1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+    border: 2px solid var(--paper);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ink-faint);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Surface textures
+------------------------------------------------------------------- */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+}
+
+.halo {
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.4px);
+  background-size: 13px 13px;
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 50%,
+    transparent 39%,
+    #000 40.5%,
+    #000 62%,
+    transparent 63.5%
+  );
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    transparent 39%,
+    #000 40.5%,
+    #000 62%,
+    transparent 63.5%
+  );
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

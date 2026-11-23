@@ -25,7 +25,7 @@ const Avatar = ({
 
     const statusColors = {
         online: 'bg-emerald-500',
-        offline: 'bg-gray-400',
+        offline: 'bg-line-strong',
         busy: 'bg-red-500',
         away: 'bg-amber-500',
     };
@@ -42,11 +42,11 @@ const Avatar = ({
 
     const baseClasses = `
     relative flex items-center justify-center overflow-hidden flex-shrink-0
-    bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700
-    text-gray-600 dark:text-gray-300 font-bold
+    bg-surface-2
+    text-ink-soft font-semibold
     ${sizes[size]}
     ${shape === 'circle' ? 'rounded-full' : 'rounded-2xl'}
-    ${bordered ? 'ring-2 ring-white dark:ring-gray-900 shadow-lg' : ''}
+    ${bordered ? 'ring-2 ring-paper' : ''}
     ${className}
   `;
 
@@ -61,7 +61,7 @@ const Avatar = ({
             {status && (
                 <span
                     className={`
-            absolute border-2 border-white dark:border-gray-900 rounded-full
+            absolute border-2 border-paper rounded-full
             ${statusColors[status]}
             ${size === 'xs' ? 'w-1.5 h-1.5 bottom-0 right-0' : ''}
             ${size === 'sm' ? 'w-2.5 h-2.5 bottom-0 right-0' : ''}

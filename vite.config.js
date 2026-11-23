@@ -2,7 +2,6 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import path from "path"
-import { visualizer } from "rollup-plugin-visualizer"
 
 // Shared externals — these are never bundled into the library output
 const EXTERNALS = [
@@ -20,7 +19,7 @@ const externalPattern = new RegExp(
   `^(${EXTERNALS.map((e) => e.replace(/[/\\\\]/g, "[\\\\/]")).join("|")})([\\/].*)?$`
 )
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const isVercel = process.env.VERCEL === "1"
   const isAnalyze = mode === "analyze"
   const isLib = mode === "lib" || isAnalyze
@@ -49,6 +48,8 @@ export default defineConfig(({ mode }) => {
   const plugins = [react(), tailwindcss()]
 
   if (isAnalyze) {
+    // Loaded on demand so the dev server doesn't require the analyzer install
+    const { visualizer } = await import("rollup-plugin-visualizer");
     plugins.push(
       visualizer({
         filename: "dist/stats.html",

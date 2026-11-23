@@ -23,27 +23,27 @@ const Pagination = ({
   }
 
   return (
-    <nav className={`flex items-center gap-1 ${className}`} aria-label="Pagination">
+    <nav className={`flex items-center gap-1.5 ${className}`} aria-label="Pagination">
       <button
         onClick={() => current > 1 && onChange(current - 1)}
         disabled={current === 1}
-        className="p-2 rounded-lg border border-gray-200 dark:border-gray-800 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink-soft disabled:opacity-40 disabled:cursor-not-allowed hover:border-line-strong hover:text-ink transition-colors"
       >
-        <ChevronLeft size={18} />
+        <ChevronLeft size={16} />
       </button>
 
       {pages.map((page, index) => (
         <React.Fragment key={index}>
           {page === '...' ? (
-            <span className="px-2 text-gray-400"><MoreHorizontal size={18} /></span>
+            <span className="px-1.5 text-faint"><MoreHorizontal size={16} /></span>
           ) : (
             <button
               onClick={() => onChange(page)}
               className={`
-                min-w-[40px] h-10 rounded-lg font-bold transition-all duration-200
+                h-9 min-w-[36px] rounded-full text-[13px] font-medium transition-colors duration-200
                 ${current === page 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' 
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800'}
+                  ? 'bg-ink text-paper' 
+                  : 'text-ink-soft hover:bg-surface-2 border border-line'}
               `}
             >
               {page}
@@ -55,9 +55,9 @@ const Pagination = ({
       <button
         onClick={() => current < total && onChange(current + 1)}
         disabled={current === total}
-        className="p-2 rounded-lg border border-gray-200 dark:border-gray-800 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink-soft disabled:opacity-40 disabled:cursor-not-allowed hover:border-line-strong hover:text-ink transition-colors"
       >
-        <ChevronRight size={18} />
+        <ChevronRight size={16} />
       </button>
     </nav>
   );

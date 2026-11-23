@@ -55,42 +55,41 @@ const OTPInput = ({
 
     // Size styles (square boxes with dynamic text sizes)
     const sizes = {
-        sm: 'w-10 h-10 text-base font-bold text-center rounded-lg',
-        md: 'w-12 h-12 text-lg font-bold text-center rounded-xl',
-        lg: 'w-14 h-14 text-xl font-bold text-center rounded-2xl',
+        sm: 'w-10 h-10 text-base font-semibold text-center rounded-lg',
+        md: 'w-12 h-12 text-lg font-semibold text-center rounded-xl',
+        lg: 'w-14 h-14 text-xl font-semibold text-center rounded-2xl',
     };
 
     // Variant styles matching other input elements
     const variants = {
         outline: `
-      bg-white dark:bg-gray-900 
-      border-2 border-gray-200 dark:border-gray-700 
-      hover:border-gray-300 dark:hover:border-gray-600
-      focus:border-blue-500 dark:focus:border-blue-400
-      focus:ring-4 focus:ring-blue-500/10
+      bg-surface text-ink
+      border border-line 
+      hover:border-line-strong
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `,
         filled: `
-      bg-gray-100 dark:bg-gray-800 
-      border-2 border-transparent
-      hover:bg-gray-200 dark:hover:bg-gray-700
-      focus:bg-white dark:focus:bg-gray-900
-      focus:border-blue-500 dark:focus:border-blue-400
-      focus:ring-4 focus:ring-blue-500/10
+      bg-surface-2 text-ink 
+      border border-transparent
+      hover:border-line
+      focus:bg-surface
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `,
         glass: `
-      bg-white/10 dark:bg-gray-900/20 
+      bg-surface/60 text-ink 
       backdrop-blur-md
-      border-2 border-white/20 dark:border-gray-700/30
-      hover:border-white/30 dark:hover:border-gray-600/40
-      focus:border-blue-400/50 dark:focus:border-blue-400/30
-      focus:bg-white/20 dark:focus:bg-gray-900/30
-      focus:ring-4 focus:ring-blue-400/20
+      border border-line
+      hover:border-line-strong
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `
     };
 
     // Error state classes
     const errorStyles = error
-        ? '!border-red-500 focus:!ring-red-500/10 dark:!border-red-500/50'
+        ? '!border-red-500 focus:!ring-red-500/15'
         : '';
 
     const handleInputChange = (index, e) => {
@@ -215,8 +214,8 @@ const OTPInput = ({
                         onKeyDown={(e) => handleKeyDown(index, e)}
                         onPaste={handlePaste}
                         className={`
-              outline-none transition-all duration-300
-              placeholder:text-gray-400 dark:placeholder:text-gray-600
+              outline-none transition-[border-color,box-shadow,background-color] duration-200 text-ink
+              placeholder:text-faint
               ${sizes[size]}
               ${variants[variant]}
               ${errorStyles}
@@ -228,7 +227,7 @@ const OTPInput = ({
 
             {/* Error Message or Help Text */}
             {(error || helpText) && (
-                <p className={`mt-1.5 text-xs ml-1 ${error ? 'text-red-500 font-semibold' : 'text-gray-500'}`}>
+                <p className={`mt-1.5 text-xs ml-1 ${error ? 'text-red-500' : 'text-ink-soft'}`}>
                     {error || helpText}
                 </p>
             )}

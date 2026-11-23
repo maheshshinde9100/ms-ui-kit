@@ -51,10 +51,10 @@ const FileUpload = ({
                 onDragLeave={() => setIsDragging(false)}
                 onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleFiles(e.dataTransfer.files); }}
                 onClick={() => fileInputRef.current?.click()}
-                className={`relative border-2 border-dashed rounded-3xl p-12 text-center cursor-pointer transition-all duration-300 group
+                className={`relative rounded-2xl border border-dashed p-10 text-center cursor-pointer transition-colors duration-200 group
                     ${isDragging 
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
-                        : 'border-gray-200 dark:border-gray-800 hover:border-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                        ? 'border-accent bg-accent-soft' 
+                        : 'border-line-strong hover:border-ink-soft hover:bg-surface-2/50'
                     }`}
             >
                 <input
@@ -67,14 +67,14 @@ const FileUpload = ({
                 />
                 
                 <div className="flex flex-col items-center">
-                    <div className={`p-5 rounded-2xl mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3
-                        ${isDragging ? 'bg-blue-600 text-white shadow-xl' : 'bg-gray-100 dark:bg-gray-800 text-gray-500'}`}
+                    <div className={`grid h-12 w-12 place-items-center rounded-full border transition-colors duration-200
+                        ${isDragging ? 'border-accent bg-accent text-white' : 'border-line bg-surface-2 text-ink-soft'}`}
                     >
-                        <Upload size={32} />
+                        <Upload size={20} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{label}</h3>
-                    <p className="text-gray-500 text-sm">{description}</p>
-                    <p className="text-xs text-gray-400 mt-4 uppercase tracking-widest font-bold">Max size: {formatSize(maxSize)}</p>
+                    <h3 className="mt-4 text-[15px] font-semibold text-ink">{label}</h3>
+                    <p className="mt-1 text-[13px] text-ink-soft">{description}</p>
+                    <p className="mt-4 font-mono text-[10px] text-faint uppercase tracking-[0.14em]">Max size: {formatSize(maxSize)}</p>
                 </div>
             </div>
 
@@ -92,20 +92,21 @@ const FileUpload = ({
                                 layout
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm"
+                                className="flex items-center gap-3.5 p-3.5 bg-surface border border-line rounded-xl"
                             >
-                                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl">
-                                    <File size={20} />
+                                <div className="grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent-ink">
+                                    <File size={16} />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-bold text-sm text-gray-900 dark:text-white truncate">{file.name}</p>
-                                    <p className="text-xs text-gray-500">{formatSize(file.size)}</p>
+                                    <p className="font-medium text-[13px] text-ink truncate">{file.name}</p>
+                                    <p className="text-xs text-faint">{formatSize(file.size)}</p>
                                 </div>
                                 <button
                                     onClick={(e) => { e.stopPropagation(); removeFile(index); }}
-                                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-400 transition-colors"
+                                    aria-label={`Remove ${file.name}`}
+                                    className="grid h-8 w-8 place-items-center rounded-full text-faint hover:bg-surface-2 hover:text-ink transition-colors"
                                 >
-                                    <X size={18} />
+                                    <X size={16} />
                                 </button>
                             </motion.div>
                         ))}

@@ -13,25 +13,25 @@ const Textarea = ({
 }) => {
   const baseClasses = `
     w-full px-4 py-3 rounded-xl
-    bg-white dark:bg-gray-900 
-    border-2 transition-all duration-300
+    bg-surface 
+    border transition-[border-color,box-shadow] duration-200
     focus:outline-none focus:ring-4
-    text-gray-900 dark:text-white
-    placeholder:text-gray-400 dark:placeholder:text-gray-500
+    text-ink text-sm
+    placeholder:text-faint
     disabled:opacity-50 disabled:cursor-not-allowed
     resize-y min-h-[100px]
   `;
 
   // Determine state classes based on error and disabled
-  let stateClasses = 'border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 focus:border-blue-500 focus:ring-blue-500/20';
+  let stateClasses = 'border-line hover:border-line-strong focus:border-accent focus:ring-accent-soft';
   if (error) {
-    stateClasses = 'border-red-500 hover:border-red-600 focus:border-red-500 focus:ring-red-500/20';
+    stateClasses = 'border-red-500 hover:border-red-500 focus:border-red-500 focus:ring-red-500/15';
   }
 
   return (
     <div className={`space-y-2 w-full flex flex-col ${className}`}>
       {label && (
-        <label className={`text-sm font-bold ${error ? 'text-red-500' : 'text-gray-900 dark:text-white'}`}>
+        <label className={`text-[13px] font-medium ${error ? 'text-red-500' : 'text-ink-soft'}`}>
           {label}
         </label>
       )}
@@ -44,7 +44,7 @@ const Textarea = ({
         rows={rows}
       />
       {helpText && (
-        <p className={`text-xs font-medium ${error ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'}`}>
+        <p className={`text-xs ${error ? 'text-red-500' : 'text-ink-soft'}`}>
           {helpText}
         </p>
       )}

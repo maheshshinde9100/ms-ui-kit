@@ -8,46 +8,38 @@ const ThemeToggle = () => {
 
   return (
     <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.94 }}
       onClick={toggleTheme}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-900 shadow-sm transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
-      aria-label="Toggle theme"
+      className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors duration-300 hover:border-line-strong hover:text-ink"
+      aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+      title={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
     >
-      <div className="relative h-5 w-5">
-        <motion.div
+      <span className="relative h-[18px] w-[18px]">
+        <motion.span
           initial={false}
           animate={{
             scale: theme === 'light' ? 1 : 0,
             rotate: theme === 'light' ? 0 : 90,
             opacity: theme === 'light' ? 1 : 0,
           }}
-          transition={{ 
-            type: "spring",
-            stiffness: 300,
-            damping: 20
-          }}
-          className="absolute inset-0 flex items-center justify-center text-amber-500"
+          transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <Sun size={20} fill="currentColor" />
-        </motion.div>
-        <motion.div
+          <Sun size={18} strokeWidth={1.75} />
+        </motion.span>
+        <motion.span
           initial={false}
           animate={{
             scale: theme === 'dark' ? 1 : 0,
             rotate: theme === 'dark' ? 0 : -90,
             opacity: theme === 'dark' ? 1 : 0,
           }}
-          transition={{ 
-            type: "spring",
-            stiffness: 300,
-            damping: 20
-          }}
-          className="absolute inset-0 flex items-center justify-center text-blue-400"
+          transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <Moon size={20} fill="currentColor" />
-        </motion.div>
-      </div>
+          <Moon size={18} strokeWidth={1.75} />
+        </motion.span>
+      </span>
     </motion.button>
   );
 };

@@ -28,34 +28,34 @@ const Card = ({
 }) => {
   // Variant styles
   const variantClasses = {
-    default: 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200',
+    default: 'bg-surface text-ink',
     primary: 'bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 text-primary-900 dark:text-primary-100',
     secondary: 'bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/20 dark:to-secondary-800/20 text-secondary-900 dark:text-secondary-100',
     success: 'bg-gradient-to-br from-success-50 to-success-100 dark:from-success-900/20 dark:to-success-800/20 text-success-900 dark:text-success-100',
     warning: 'bg-gradient-to-br from-warning-50 to-warning-100 dark:from-warning-900/20 dark:to-warning-800/20 text-warning-900 dark:text-warning-100',
     danger: 'bg-gradient-to-br from-danger-50 to-danger-100 dark:from-danger-900/20 dark:to-danger-800/20 text-danger-900 dark:text-danger-100',
-    dark: 'bg-gradient-to-br from-gray-900 to-gray-800 text-white',
-    glass: 'backdrop-blur-lg bg-white/10 dark:bg-gray-900/20 border border-white/20 dark:border-gray-700/30',
+    dark: 'bg-ink text-paper',
+    glass: 'backdrop-blur-xl bg-surface/60 border border-line',
   };
 
   // Border styles
   const borderClasses = bordered
-    ? 'border border-gray-200 dark:border-gray-700'
+    ? 'border border-line'
     : 'border-0';
 
-  // Elevation styles
+  // Elevation styles — kept almost flat on purpose
   const elevationClasses = elevated
-    ? 'shadow-md hover:shadow-lg transition-shadow duration-300'
+    ? 'shadow-[0_1px_2px_rgba(10,10,10,0.04)]'
     : 'shadow-none';
 
   // Rounded styles
   const roundedClasses = rounded
-    ? 'rounded-xl'
+    ? 'rounded-2xl'
     : 'rounded-none';
 
   // Hover effect
   const hoverClasses = hoverable
-    ? 'transition-all duration-300 hover:-translate-y-1 hover:shadow-xl'
+    ? 'transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong'
     : '';
 
   // Width classes
@@ -80,7 +80,7 @@ const Card = ({
         ${widthClasses[width]}
         ${className}
         overflow-hidden
-        transition-all duration-200
+        transition-colors duration-300
       `}
       {...props}
     >
