@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     Card,
@@ -186,20 +186,9 @@ const TestingUI = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isCommandOpen, setIsCommandOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [otpCode, setOtpCode] = useState('');
     const [installCopied, setInstallCopied] = useState(false);
     const toast = useToast();
-const [cursorStyle, setCursorStyle] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('ms-ui-cursor-style') || 'default';
-        }
-        return 'default';
-    });
-
-    useEffect(() => {
-        localStorage.setItem('ms-ui-cursor-style', cursorStyle);
-    }, [cursorStyle]);
     const navLinks = [
         { label: 'Components', href: '/components' },
         { label: 'Developer', href: '/developer' },
