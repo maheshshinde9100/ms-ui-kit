@@ -20,25 +20,25 @@ const Alert = ({
 
     const variantStyles = {
         info: {
-            light: 'bg-blue-50 text-blue-800 border-blue-200',
-            solid: 'bg-blue-600 text-white border-blue-700',
-            glass: 'bg-blue-500/10 text-blue-800 dark:text-blue-300 border-blue-500/20 backdrop-blur-md',
-            iconColor: 'text-blue-500'
+            light: 'bg-accent-soft text-accent-ink border-accent-line',
+            solid: 'bg-accent text-white border-accent',
+            glass: 'bg-accent-soft text-accent-ink border-accent-line backdrop-blur-md',
+            iconColor: 'text-accent-ink'
         },
         success: {
-            light: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+            light: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20',
             solid: 'bg-emerald-600 text-white border-emerald-700',
             glass: 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-500/20 backdrop-blur-md',
             iconColor: 'text-emerald-500'
         },
         warning: {
-            light: 'bg-amber-50 text-amber-800 border-amber-200',
+            light: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20',
             solid: 'bg-amber-600 text-white border-amber-700',
             glass: 'bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-500/20 backdrop-blur-md',
             iconColor: 'text-amber-500'
         },
         danger: {
-            light: 'bg-red-50 text-red-800 border-red-200',
+            light: 'bg-red-50 text-red-800 border-red-200 dark:bg-red-500/10 dark:text-red-300 dark:border-red-500/20',
             solid: 'bg-red-600 text-white border-red-700',
             glass: 'bg-red-500/10 text-red-800 dark:text-red-300 border-red-500/20 backdrop-blur-md',
             iconColor: 'text-red-500'
@@ -54,7 +54,7 @@ const Alert = ({
         <div
             role="alert"
             className={`
-        relative flex items-start gap-4 p-4 rounded-xl border-2 transition-all duration-300
+        relative flex items-start gap-4 p-4 rounded-xl border transition-all duration-300
         animate-in fade-in slide-in-from-top-2
         ${variantStyles[variant][styleType]}
         ${className}

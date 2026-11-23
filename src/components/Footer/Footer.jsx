@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = ({
   logoText = "ms-ui-kit",
-  description = "A premium UI component library crafted for modern web applications.",
+  description = "A quiet foundation for loud ideas — a hand-built React component system.",
   socials = [],
   companyInfo = {
     name: "MS Studio",
@@ -14,30 +14,30 @@ const Footer = ({
   className = ""
 }) => {
   return (
-    <footer className={`bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800 pt-16 pb-8 ${className}`}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
+    <footer className={`border-t border-line bg-paper ${className}`}>
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-12 md:grid-cols-12">
           {/* Brand Column */}
-          <div className="md:col-span-5 lg:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
-            <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
-                <Layers className="text-white" size={24} />
-              </div>
-              <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+          <div className="md:col-span-5">
+            <Link to="/" className="group inline-flex items-center gap-2.5">
+              <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-ink text-paper transition-transform duration-300 group-hover:-rotate-6">
+                <Layers size={16} strokeWidth={2} />
+              </span>
+              <span className="text-[15px] font-semibold tracking-tight text-ink">
                 {logoText}
               </span>
             </Link>
-            <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-sm leading-relaxed">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-soft">
               {description}
             </p>
-            <div className="flex items-center gap-4">
+            <div className="mt-7 flex items-center gap-2.5">
               {socials.map((social, idx) => (
-                <a 
+                <a
                   key={idx}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
+                  className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink-soft transition-colors duration-200 hover:border-line-strong hover:text-ink"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -47,26 +47,26 @@ const Footer = ({
           </div>
 
           {/* Links Columns */}
-          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-2 lg:grid-cols-3 gap-8 text-center sm:text-left">
+          <div className="grid grid-cols-2 gap-8 md:col-span-7 sm:grid-cols-3">
             {links.map((column, idx) => (
-              <div key={idx} className="flex flex-col items-center sm:items-start">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
+              <div key={idx}>
+                <h4 className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
                   {column.title}
                 </h4>
-                <ul className="space-y-4">
+                <ul className="mt-5 space-y-3">
                   {column.items.map((item, itemIdx) => (
                     <li key={itemIdx}>
                       {item.href.startsWith('/') ? (
-                        <Link 
+                        <Link
                           to={item.href}
-                          className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                          className="text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
                         >
                           {item.label}
                         </Link>
                       ) : (
-                        <a 
+                        <a
                           href={item.href}
-                          className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                          className="text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -82,13 +82,13 @@ const Footer = ({
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-gray-100 dark:border-gray-800 gap-4">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-line pt-6 sm:flex-row sm:items-center">
+          <p className="text-xs text-faint">
             © {companyInfo.year} {companyInfo.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Terms of Service</a>
+          <div className="flex items-center gap-6 text-xs text-ink-soft">
+            <a href="#" className="transition-colors hover:text-ink">Privacy Policy</a>
+            <a href="#" className="transition-colors hover:text-ink">Terms of Service</a>
           </div>
         </div>
       </div>

@@ -57,37 +57,38 @@ const CommandPalette = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-gray-950/40 backdrop-blur-md z-[1000]"
+                        className="fixed inset-0 bg-[#0a0a0a]/40 backdrop-blur-md z-[1000]"
                     />
                     <div className="fixed inset-0 z-[1001] flex items-start justify-center pt-[15vh] px-4 pointer-events-none">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                            initial={{ opacity: 0, scale: 0.97, y: -12 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                            className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden pointer-events-auto border border-gray-100 dark:border-gray-800"
+                            exit={{ opacity: 0, scale: 0.97, y: -12 }}
+                            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            className="w-full max-w-2xl bg-surface rounded-2xl shadow-[0_24px_80px_rgba(10,10,10,0.25)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.6)] overflow-hidden pointer-events-auto border border-line"
                         >
-                            <div className="flex items-center px-6 py-4 border-b border-gray-50 dark:border-gray-800">
-                                <Search size={22} className="text-gray-400 mr-4" />
+                            <div className="flex items-center px-5 py-3.5 border-b border-line">
+                                <Search size={18} className="text-faint mr-3" />
                                 <input
                                     autoFocus
-                                    className="flex-1 bg-transparent border-none outline-none text-lg text-gray-900 dark:text-white placeholder-gray-400"
+                                    className="flex-1 bg-transparent border-none outline-none text-[15px] text-ink placeholder:text-faint"
                                     placeholder={placeholder}
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
                                 <div className="flex items-center gap-2">
-                                    <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs font-bold text-gray-500">
+                                    <kbd className="hidden sm:flex items-center gap-1 px-2 py-0.5 bg-surface-2 border border-line rounded-md font-mono text-[10px] text-ink-soft">
                                         <Command size={10} /> K
                                     </kbd>
-                                    <button onClick={onClose} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-                                        <X size={18} className="text-gray-400" />
+                                    <button onClick={onClose} aria-label="Close" className="grid h-7 w-7 place-items-center rounded-full text-ink-soft hover:bg-surface-2 hover:text-ink transition-colors">
+                                        <X size={16} />
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="max-h-[60vh] overflow-y-auto p-3">
+                            <div className="max-h-[60vh] overflow-y-auto p-2">
                                 {filteredActions.length > 0 ? (
-                                    <div className="space-y-1">
+                                    <div className="space-y-0.5">
                                         {filteredActions.map((action, index) => (
                                             <div
                                                 key={action.id || index}
@@ -96,38 +97,38 @@ const CommandPalette = ({
                                                     onClose();
                                                 }}
                                                 onMouseEnter={() => setSelectedIndex(index)}
-                                                className={`flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer transition-all ${
+                                                className={`flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl cursor-pointer transition-colors ${
                                                     index === selectedIndex 
-                                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' 
-                                                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300'
+                                                    ? 'bg-accent text-white' 
+                                                    : 'hover:bg-surface-2 text-ink-soft'
                                                 }`}
                                             >
-                                                <div className={`p-2 rounded-xl ${index === selectedIndex ? 'bg-white/20' : 'bg-gray-100 dark:bg-gray-800'}`}>
+                                                <div className={`grid h-8 w-8 place-items-center rounded-lg ${index === selectedIndex ? 'bg-white/15 text-white' : 'bg-surface-2 text-ink-soft'}`}>
                                                     {action.icon}
                                                 </div>
                                                 <div className="flex-1">
-                                                    <div className="font-bold">{action.label}</div>
+                                                    <div className="text-[13px] font-medium">{action.label}</div>
                                                     {action.description && (
-                                                        <div className={`text-xs ${index === selectedIndex ? 'text-blue-100' : 'text-gray-500'}`}>
+                                                        <div className={`text-xs ${index === selectedIndex ? 'text-white/70' : 'text-faint'}`}>
                                                             {action.description}
                                                         </div>
                                                     )}
                                                 </div>
-                                                {index === selectedIndex && <ChevronRight size={18} />}
+                                                {index === selectedIndex && <ChevronRight size={16} />}
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
-                                    <div className="py-12 text-center text-gray-500">
-                                        No results for "<span className="font-bold text-gray-900 dark:text-white">{query}</span>"
+                                    <div className="py-12 text-center text-sm text-ink-soft">
+                                        No results for "<span className="font-medium text-ink">{query}</span>"
                                     </div>
                                 )}
                             </div>
 
-                            <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-50 dark:border-gray-800 flex justify-between items-center text-[10px] uppercase tracking-widest font-bold text-gray-400">
+                            <div className="px-5 py-2.5 bg-surface-2 border-t border-line flex justify-between items-center font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
                                 <div className="flex gap-4">
-                                    <span className="flex items-center gap-1"><kbd className="bg-white dark:bg-gray-900 px-1 rounded shadow-sm border border-gray-200 dark:border-gray-700">↵</kbd> select</span>
-                                    <span className="flex items-center gap-1"><kbd className="bg-white dark:bg-gray-900 px-1 rounded shadow-sm border border-gray-200 dark:border-gray-700">↑↓</kbd> navigate</span>
+                                    <span className="flex items-center gap-1.5"><kbd className="bg-surface px-1.5 py-0.5 rounded border border-line text-ink-soft">↵</kbd> select</span>
+                                    <span className="flex items-center gap-1.5"><kbd className="bg-surface px-1.5 py-0.5 rounded border border-line text-ink-soft">↑↓</kbd> navigate</span>
                                 </div>
                                 <span>Command Palette</span>
                             </div>

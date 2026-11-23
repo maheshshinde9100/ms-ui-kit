@@ -19,21 +19,21 @@ const Progress = ({
   };
 
   const variantClasses = {
-    primary: 'bg-blue-600',
+    primary: 'bg-accent',
     success: 'bg-emerald-500',
     warning: 'bg-amber-500',
     danger: 'bg-red-500',
-    premium: 'bg-gradient-to-r from-blue-600 to-purple-600',
+    premium: 'bg-accent',
   };
 
   return (
     <div className={`w-full ${className}`}>
       {showValue && (
         <div className="flex justify-between mb-1">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{percentage.toFixed(0)}%</span>
+          <span className="text-xs font-medium text-ink-soft">{percentage.toFixed(0)}%</span>
         </div>
       )}
-      <div className={`w-full bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden ${containerSizes[size]}`}>
+      <div className={`w-full bg-surface-2 rounded-full overflow-hidden ${containerSizes[size]}`}>
         <div 
           className={`h-full rounded-full transition-all duration-500 ease-out ${variantClasses[variant]} ${animated ? 'relative overflow-hidden' : ''}`}
           style={{ width: `${percentage}%` }}

@@ -10,14 +10,14 @@ const EmptyState = ({
   className = '' 
 }) => {
   return (
-    <div className={`flex flex-col items-center justify-center p-12 text-center rounded-3xl border-2 border-dashed border-gray-100 dark:border-gray-800 ${className}`}>
+    <div className={`flex flex-col items-center justify-center p-12 text-center rounded-2xl border border-dashed border-line-strong ${className}`}>
       {icon && (
-        <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-900 rounded-full text-gray-400">
+        <div className="mb-5 grid h-14 w-14 place-items-center rounded-full border border-line bg-surface-2 text-ink-soft">
           {icon}
         </div>
       )}
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
-      <p className="text-gray-500 dark:text-gray-400 max-w-sm mb-8 leading-relaxed">
+      <h3 className="text-lg font-semibold text-ink mb-1.5">{title}</h3>
+      <p className="text-[13px] text-ink-soft max-w-sm mb-7 leading-relaxed">
         {description}
       </p>
       {actionLabel && (

@@ -46,7 +46,7 @@ const Drawer = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[999]"
+                        className="fixed inset-0 bg-[#0a0a0a]/40 backdrop-blur-sm z-[999]"
                     />
                     
                     {/* Drawer */}
@@ -57,7 +57,7 @@ const Drawer = ({
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                         className={`fixed ${position === 'right' ? 'right-0' : 'left-0'} ${position === 'top' ? 'top-0' : 'bottom-0'} 
                             ${(position === 'left' || position === 'right') ? 'h-full ' + sizes[size] : 'w-full h-auto'}
-                            bg-white dark:bg-gray-900 shadow-2xl z-[1000] flex flex-col overflow-hidden border-gray-100 dark:border-gray-800
+                            bg-surface text-ink z-[1000] flex flex-col overflow-hidden border-line
                             ${position === 'right' ? 'border-l' : ''}
                             ${position === 'left' ? 'border-r' : ''}
                             ${position === 'top' ? 'border-b' : ''}
@@ -65,18 +65,19 @@ const Drawer = ({
                         `}
                     >
                         {/* Header */}
-                        <div className="px-6 py-4 border-b border-gray-50 dark:border-gray-800 flex justify-between items-center bg-white dark:bg-gray-900 sticky top-0 z-10">
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-none">{title}</h3>
+                        <div className="px-6 py-4 border-b border-line flex justify-between items-center bg-surface sticky top-0 z-10">
+                            <h3 className="text-[15px] font-semibold text-ink leading-none">{title}</h3>
                             <button
                                 onClick={onClose}
-                                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors text-gray-500"
+                                aria-label="Close drawer"
+                                className="grid h-8 w-8 place-items-center rounded-full text-ink-soft hover:bg-surface-2 hover:text-ink transition-colors"
                             >
-                                <X size={20} />
+                                <X size={18} />
                             </button>
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 overflow-y-auto p-6">
+                        <div className="flex-1 overflow-y-auto p-6 text-ink-soft">
                             {children}
                         </div>
                     </motion.div>

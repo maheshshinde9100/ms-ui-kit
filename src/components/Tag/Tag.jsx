@@ -10,21 +10,21 @@ const Tag = ({
   className = '' 
 }) => {
   const variants = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800',
-    green: 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
-    red: 'bg-red-50 text-red-600 border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800',
-    purple: 'bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800',
-    gray: 'bg-gray-100 text-gray-600 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700',
+    blue: 'bg-accent-soft text-accent-ink border-accent-line',
+    green: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-900/50',
+    red: 'bg-red-50 text-red-600 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50',
+    purple: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/30 dark:text-violet-300 dark:border-violet-900/50',
+    gray: 'bg-surface-2 text-ink-soft border-line',
   };
 
   const sizes = {
-    sm: 'px-2 py-0.5 text-xs font-bold',
-    md: 'px-2.5 py-1 text-sm font-bold',
-    lg: 'px-3 py-1.5 text-base font-bold',
+    sm: 'px-2 py-0.5 text-[11px] font-medium',
+    md: 'px-2.5 py-1 text-xs font-medium',
+    lg: 'px-3 py-1.5 text-[13px] font-medium',
   };
 
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full border transition-colors duration-200 ${variants[variant]} ${sizes[size]} ${className}`}>
       {children}
       {closable && (
         <button 

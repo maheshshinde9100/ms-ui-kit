@@ -6,14 +6,14 @@ import React, { useState } from 'react';
  */
 const AccordionItem = ({ title, children, isOpen, onClick }) => {
     return (
-        <div className="border-b border-gray-100 dark:border-gray-800 last:border-0 overflow-hidden">
+        <div className="border-b border-line last:border-0 overflow-hidden">
             <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-surface-2/60 transition-colors"
                 onClick={onClick}
             >
-                <span className="font-bold text-gray-800 dark:text-gray-100">{title}</span>
+                <span className="font-medium text-ink">{title}</span>
                 <svg
-                    className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`w-4 h-4 text-faint transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -27,7 +27,7 @@ const AccordionItem = ({ title, children, isOpen, onClick }) => {
           ${isOpen ? 'pb-5 opacity-100 max-h-[500px]' : 'max-h-0 opacity-0'}
         `}
             >
-                <div className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+                <div className="text-ink-soft leading-relaxed text-[13px]">
                     {children}
                 </div>
             </div>
@@ -51,7 +51,7 @@ const Accordion = ({ items, allowMultiple = false, className = '' }) => {
     };
 
     return (
-        <div className={`bg-white dark:bg-gray-900 rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm ${className}`}>
+        <div className={`bg-surface text-ink rounded-2xl overflow-hidden border border-line ${className}`}>
             {items.map((item, index) => (
                 <AccordionItem
                     key={index}

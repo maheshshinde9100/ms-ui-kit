@@ -44,34 +44,36 @@ const Modal = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                        className="absolute inset-0 bg-[#0a0a0a]/50 backdrop-blur-sm"
                         onClick={closeOnBackdrop ? onClose : undefined}
                     />
 
                     {/* Modal Container */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        initial={{ opacity: 0, scale: 0.97, y: 12 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        exit={{ opacity: 0, scale: 0.97, y: 12 }}
+                        transition={{ type: 'spring', damping: 26, stiffness: 320 }}
                         className={`
-                            relative w-full bg-white dark:bg-gray-900 
-                            rounded-3xl shadow-2xl border border-white/20 dark:border-gray-800
+                            relative w-full bg-surface text-ink 
+                            rounded-2xl border border-line
+                            shadow-[0_24px_80px_rgba(10,10,10,0.25)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.6)]
                             flex flex-col overflow-hidden
                             ${sizes[size]}
                             ${className}
                         `}
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800">
-                            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-line">
+                            <h3 className="text-[15px] font-semibold text-ink">
                                 {title}
                             </h3>
                             <button
                                 onClick={onClose}
-                                className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                                aria-label="Close dialog"
+                                className="grid h-8 w-8 place-items-center rounded-full text-ink-soft hover:bg-surface-2 hover:text-ink transition-colors"
                             >
-                                <X size={20} />
+                                <X size={18} />
                             </button>
                         </div>
 
@@ -82,7 +84,7 @@ const Modal = ({
 
                         {/* Footer */}
                         {footer && (
-                            <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50">
+                            <div className="px-6 py-4 border-t border-line bg-surface-2/60">
                                 {footer}
                             </div>
                         )}

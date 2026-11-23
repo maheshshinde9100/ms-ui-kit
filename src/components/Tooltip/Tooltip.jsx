@@ -18,10 +18,10 @@ const Tooltip = ({
   };
 
   const arrowClasses = {
-    top: 'top-full left-1/2 -translate-x-1/2 border-t-gray-900 dark:border-t-gray-800',
-    bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-gray-900 dark:border-b-gray-800',
-    left: 'left-full top-1/2 -translate-y-1/2 border-l-gray-900 dark:border-l-gray-800',
-    right: 'right-full top-1/2 -translate-y-1/2 border-r-gray-900 dark:border-r-gray-800',
+    top: 'top-full left-1/2 -translate-x-1/2 border-t-ink',
+    bottom: 'bottom-full left-1/2 -translate-x-1/2 border-b-ink',
+    left: 'left-full top-1/2 -translate-y-1/2 border-l-ink',
+    right: 'right-full top-1/2 -translate-y-1/2 border-r-ink',
   };
 
   return (
@@ -38,7 +38,7 @@ const Tooltip = ({
             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.15, delay }}
-            className={`absolute z-50 px-3 py-1.5 text-xs font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-xl whitespace-nowrap pointer-events-none ${positionClasses[position]}`}
+            className={`absolute z-50 px-2.5 py-1 text-[11px] font-medium text-paper bg-ink rounded-md whitespace-nowrap pointer-events-none ${positionClasses[position]}`}
           >
             {content}
             <div className={`absolute border-4 border-transparent ${arrowClasses[position]}`} />

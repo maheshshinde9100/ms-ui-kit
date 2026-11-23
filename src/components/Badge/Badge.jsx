@@ -2,11 +2,11 @@ import React from 'react';
 
 /**
  * ms-ui-kit Badge Component
- * A premium badge/tag component for labels and counts
+ * A quiet status label for metadata, counts, and states
  */
 const Badge = ({
     children,
-    variant = 'primary', // primary, secondary, success, warning, danger, neutral
+    variant = 'primary', // primary, premium, secondary, success, warning, danger, neutral
     size = 'md', // sm, md, lg
     isPill = true,
     isDot = false,
@@ -14,24 +14,35 @@ const Badge = ({
     ...props
 }) => {
     const variants = {
-        primary: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
-        secondary: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
+        primary: 'bg-accent-soft text-accent-ink border-accent-line',
+        premium: 'bg-accent-soft text-accent-ink border-accent-line',
+        secondary: 'bg-surface-2 text-ink-soft border-line',
         success: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
         warning: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
         danger: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
-        neutral: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20',
+        neutral: 'bg-surface-2 text-ink-soft border-line',
+    };
+
+    const dots = {
+        primary: 'bg-accent',
+        premium: 'bg-accent',
+        secondary: 'bg-ink-faint',
+        success: 'bg-emerald-500',
+        warning: 'bg-amber-500',
+        danger: 'bg-red-500',
+        neutral: 'bg-ink-faint',
     };
 
     const sizes = {
-        sm: 'px-2 py-0.5 text-[10px] font-bold',
-        md: 'px-2.5 py-1 text-xs font-bold leading-none',
-        lg: 'px-3 py-1.5 text-sm font-bold',
+        sm: 'px-2 py-0.5 text-[10px] font-medium',
+        md: 'px-2.5 py-1 text-[11px] font-medium leading-none',
+        lg: 'px-3 py-1.5 text-xs font-medium',
     };
 
     if (isDot) {
         return (
             <span
-                className={`inline-block w-2.5 h-2.5 rounded-full ring-2 ring-white dark:ring-gray-900 ${variants[variant].split(' ')[0]} ${className}`}
+                className={`inline-block w-2 h-2 rounded-full ${dots[variant] ?? dots.neutral} ${className}`}
                 {...props}
             />
         );
@@ -40,11 +51,11 @@ const Badge = ({
     return (
         <span
             className={`
-        inline-flex items-center justify-center
-        border-1.5 transition-all duration-200
-        ${isPill ? 'rounded-full' : 'rounded-lg'}
-        ${variants[variant]}
+        inline-flex items-center justify-center gap-1.5
+        border transition-colors duration-200
+        ${isPill ? 'rounded-full' : 'rounded-md'}
         ${sizes[size]}
+        ${variants[variant] ?? variants.neutral}
         ${className}
       `}
             {...props}

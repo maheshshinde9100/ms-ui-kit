@@ -30,7 +30,7 @@ const CardFooter = ({
     <div
       className={`
         px-6 py-4
-        ${divider ? 'border-t border-gray-200 dark:border-gray-700' : ''}
+        ${divider ? 'border-t border-line' : ''}
         ${className}
       `}
       {...props}

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Layers } from 'lucide-react';
+import { Layers, Menu, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Avatar from '../Avatar';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import CursorSelector from '../CustomCursor/CursorSelector';
 
 /**
  * ms-ui-kit Navbar Component
- * A premium sticky navigation bar with glassmorphism
+ * A quiet sticky header with hairline chrome and a mobile sheet
  */
 
 const Navbar = ({
@@ -20,119 +21,154 @@ const Navbar = ({
     mobileVariant='menu',
 }) => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpen,setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => setIsScrolled(window.scrollY > 12);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navItems = links.map((link, index) => {
+    const linkClasses =
+        'relative text-[13px] font-medium tracking-wide text-ink-soft transition-colors duration-200 hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 hover:after:scale-x-100';
+
+    const renderLink = (link, index, mobile = false) => {
         const isInternal = link.href.startsWith('/');
-        const commonClasses = "text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
-        
+        const classes = mobile
+            ? 'block border-b border-line py-3.5 text-[15px] font-medium text-ink transition-colors hover:text-accent-ink last:border-b-0'
+            : linkClasses;
+
         if (isInternal) {
             return (
-                <Link key={index} to={link.href} className={commonClasses}>
+                <Link
+                    key={index}
+                    to={link.href}
+                    className={classes}
+                    onClick={() => setIsOpen(false)}
+                >
                     {link.label}
                 </Link>
             );
         }
         return (
-            <a key={index} href={link.href} className={commonClasses} target="_blank" rel="noopener noreferrer">
+            <a
+                key={index}
+                href={link.href}
+                className={classes}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+            >
                 {link.label}
             </a>
         );
-    });
+    };
+
+    const solid = isScrolled || isOpen;
 
     return (
         <nav
             className={`
-        fixed top-0 left-0 right-0 z-40 transition-all duration-300
-        ${isScrolled
-                    ? 'py-3 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 shadow-sm'
-                    : 'py-6 bg-transparent'}
+        fixed top-0 left-0 right-0 z-40
+        transition-[background-color,border-color] duration-300
+        ${solid
+                    ? 'bg-paper/85 backdrop-blur-xl border-b border-line'
+                    : 'bg-transparent border-b border-transparent'}
         ${className}
       `}
         >
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
-                        <Layers className="text-white" size={24} />
-                    </div>
-                    <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                        {logo}
+                <Link
+                    to="/"
+                    className="group flex items-center gap-2.5"
+                    onClick={() => setIsOpen(false)}
+                >
+                    <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-ink text-paper transition-transform duration-300 group-hover:-rotate-6">
+                        <Layers size={16} strokeWidth={2} />
+                    </span>
+                    <span className="flex items-baseline gap-2">
+                        <span className="text-[15px] font-semibold tracking-tight text-ink">
+                            {logo}
+                        </span>
+                        <span className="hidden rounded-full border border-line px-1.5 py-px font-mono text-[9px] text-faint sm:inline">
+                            v0.3
+                        </span>
                     </span>
                 </Link>
 
-                {/* Links */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navItems}
-                    
-                    <ThemeToggle />
-                    {onCursorChange && (
-                        <CursorSelector 
-                            currentStyle={cursorStyle} 
-                            onStyleChange={onCursorChange} 
-                        />
-                    )}
+                {/* Desktop links */}
+                <div className="hidden items-center gap-8 md:flex">
+                    {links.map((link, index) => renderLink(link, index))}
 
-                    {user ? (
-                        <div className="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">
-                            <div className="text-right hidden sm:block">
-                                <p className="text-sm font-bold text-gray-900 dark:text-white leading-none">{user.name}</p>
-                                <p className="text-xs text-gray-500 mt-1">{user.role}</p>
+                    <div className="flex items-center gap-4 pl-8 border-l border-line">
+                        <ThemeToggle />
+
+                        {user ? (
+                            <div className="flex items-center gap-2.5">
+                                <span className="text-right leading-tight hidden lg:block">
+                                    <span className="block text-[12px] font-medium text-ink">
+                                        {user.name}
+                                    </span>
+                                    <span className="block text-[11px] text-ink-soft">
+                                        {user.role}
+                                    </span>
+                                </span>
+                                <Avatar src={user.avatar} name={user.name} size="sm" status="online" bordered />
                             </div>
-                            <Avatar src={user.avatar} name={user.name} size="md" status="online" bordered />
-                        </div>
-                    ) : (
-                        <button className="px-5 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
-                            Get Started
-                        </button>
-                    )}
+                        ) : (
+                            <Link
+                                to="/"
+                                className="rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-paper transition-opacity duration-200 hover:opacity-90"
+                            >
+                                Get started
+                            </Link>
+                        )}
+                    </div>
                 </div>
 
-                 {/* Mobile — NEW: branches based on mobileVariant */}
-                {mobileVariant === 'menu' ? (
-                    <>
-                        <button 
-                            className="md:hidden p-2 text-gray-600 dark:text-gray-400"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-
-                        {isOpen && (
-                            <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800 shadow-lg p-6 flex flex-col gap-4 z-50">
-                                {navItems}
-                                <ThemeToggle />
-                                {user ? (
-                                    <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
-                                        <Avatar src={user.avatar} name={user.name} size="md" status="online" bordered />
-                                        <div>
-                                            <p className="text-sm font-bold text-gray-900 dark:text-white leading-none">{user.name}</p>
-                                            <p className="text-xs text-gray-500 mt-1">{user.role}</p>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <button className="w-full px-5 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
-                                        Get Started
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                    </>
-                ) : (
-                    <button className="md:hidden px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-gray-900/10">
-                        Get Started
+                {/* Mobile controls */}
+                <div className="flex items-center gap-2 md:hidden">
+                    <ThemeToggle />
+                    <button
+                        onClick={() => setIsOpen((open) => !open)}
+                        className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink-soft transition-colors hover:border-line-strong hover:text-ink"
+                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isOpen}
+                    >
+                        {isOpen ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
                     </button>
-                )}
+                </div>
             </div>
+
+            {/* Mobile sheet */}
+            <AnimatePresence initial={false}>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden md:hidden"
+                    >
+                        <div className="border-t border-line px-6 pb-6 pt-2">
+                            <div className="flex flex-col">
+                                {links.map((link, index) => renderLink(link, index, true))}
+                            </div>
+                            {user && (
+                                <div className="mt-5 flex items-center gap-3 border-t border-line pt-5">
+                                    <Avatar src={user.avatar} name={user.name} size="md" bordered />
+                                    <div className="leading-tight">
+                                        <p className="text-[14px] font-medium text-ink">{user.name}</p>
+                                        <p className="text-[12px] text-ink-soft">{user.role}</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 };

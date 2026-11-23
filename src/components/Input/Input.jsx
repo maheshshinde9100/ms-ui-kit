@@ -22,36 +22,35 @@ const Input = ({
 
     // Size configurations
     const sizes = {
-        sm: 'px-3 py-1.5 text-sm rounded-lg',
-        md: 'px-4 py-2.5 text-base rounded-xl',
-        lg: 'px-5 py-3.5 text-lg rounded-2xl',
+        sm: 'px-4 py-2 text-sm rounded-full',
+        md: 'px-5 py-2.5 text-sm rounded-full',
+        lg: 'px-6 py-3.5 text-base rounded-full',
     };
 
     // Variant styles
     const variants = {
         outline: `
-      bg-white dark:bg-gray-900 
-      border-2 border-gray-200 dark:border-gray-700 
-      hover:border-gray-300 dark:hover:border-gray-600
-      focus:border-blue-500 dark:focus:border-blue-400
-      focus:ring-4 focus:ring-blue-500/10
+      bg-surface text-ink
+      border border-line
+      hover:border-line-strong
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `,
         filled: `
-      bg-gray-100 dark:bg-gray-800 
-      border-2 border-transparent
-      hover:bg-gray-200 dark:hover:bg-gray-700
-      focus:bg-white dark:focus:bg-gray-900
-      focus:border-blue-500 dark:focus:border-blue-400
-      focus:ring-4 focus:ring-blue-500/10
+      bg-surface-2 text-ink
+      border border-transparent
+      hover:border-line
+      focus:bg-surface
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `,
         glass: `
-      bg-white/10 dark:bg-gray-900/20 
+      bg-surface/60 text-ink
       backdrop-blur-md
-      border-2 border-white/20 dark:border-gray-700/30
-      hover:border-white/30 dark:hover:border-gray-600/40
-      focus:border-blue-400/50 dark:focus:border-blue-400/30
-      focus:bg-white/20 dark:focus:bg-gray-900/30
-      focus:ring-4 focus:ring-blue-400/20
+      border border-line
+      hover:border-line-strong
+      focus:border-accent
+      focus:ring-4 focus:ring-accent-soft
     `
     };
 
@@ -65,7 +64,7 @@ const Input = ({
             {label && (
                 <label
                     htmlFor={inputId}
-                    className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1 transition-colors"
+                    className="ml-4 mb-2 block text-[13px] font-medium text-ink-soft transition-colors"
                 >
                     {label}
                 </label>
@@ -74,7 +73,7 @@ const Input = ({
             <div className="relative group">
                 {/* Start Icon */}
                 {startIcon && (
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-faint transition-colors group-focus-within:text-accent-ink">
                         {startIcon}
                     </div>
                 )}
@@ -82,8 +81,8 @@ const Input = ({
                 <input
                     id={inputId}
                     className={`
-            w-full outline-none transition-all duration-300
-            placeholder:text-gray-400 dark:placeholder:text-gray-600
+            w-full outline-none transition-[border-color,background-color,box-shadow] duration-300
+            placeholder:text-faint
             ${sizes[size]}
             ${variants[variant]}
             ${errorStyles}
@@ -96,18 +95,15 @@ const Input = ({
 
                 {/* End Icon */}
                 {endIcon && (
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-faint transition-colors group-focus-within:text-accent-ink">
                         {endIcon}
                     </div>
                 )}
-
-                {/* Animated focus ring for premium feel */}
-                <div className="absolute inset-0 rounded-[inherit] -z-10 focus-within:ring-4 ring-blue-500/5 transition-all duration-300" />
             </div>
 
             {/* Error Message or Help Text */}
             {(error || helpText) && (
-                <p className={`mt-1.5 text-xs ml-1 ${error ? 'text-red-500 font-medium' : 'text-gray-500'}`}>
+                <p className={`mt-1.5 ml-4 text-xs ${error ? 'text-red-500 font-medium' : 'text-faint'}`}>
                     {error || helpText}
                 </p>
             )}

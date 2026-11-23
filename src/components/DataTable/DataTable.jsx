@@ -64,17 +64,17 @@ const DataTable = ({
             initial="hidden"
             animate="visible"
             variants={tableVariants}
-            className="w-full bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden"
+            className="w-full bg-surface text-ink rounded-2xl border border-line overflow-hidden"
         >
             {/* Header / Search */}
             {searchable && (
-                <div className="p-4 border-b border-gray-50 dark:border-gray-800 flex items-center gap-3">
+                <div className="p-4 border-b border-line flex items-center gap-3">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-faint" size={16} />
                         <input
                             type="text"
                             placeholder="Search records..."
-                            className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-transparent focus:border-blue-500 rounded-xl outline-none transition-all text-sm"
+                            className="w-full pl-10 pr-4 py-2 bg-surface-2 border border-line rounded-full text-sm text-ink placeholder:text-faint outline-none transition-[border-color,box-shadow] focus:border-accent focus:ring-4 focus:ring-accent-soft"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -86,12 +86,12 @@ const DataTable = ({
             <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-gray-50/50 dark:bg-gray-800/30">
+                        <tr className="bg-surface-2">
                             {columns.map((col) => (
                                 <th 
                                     key={col.key}
                                     onClick={() => col.sortable !== false && requestSort(col.key)}
-                                    className={`px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-900 dark:hover:text-white transition-colors ${col.sortable !== false ? 'group' : ''}`}
+                                    className={`px-6 py-3.5 font-mono text-[10px] font-medium text-ink-soft uppercase tracking-[0.14em] cursor-pointer hover:text-ink transition-colors ${col.sortable !== false ? 'group' : ''}`}
                                 >
                                     <div className="flex items-center gap-2">
                                         {col.label}
@@ -99,7 +99,7 @@ const DataTable = ({
                                             <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                                                 {sortConfig.key === col.key ? (
                                                     sortConfig.direction === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />
-                                                ) : <ChevronDown size={14} className="text-gray-300" />}
+                                                ) : <ChevronDown size={14} className="text-faint" />}
                                             </div>
                                         )}
                                     </div>
@@ -107,7 +107,7 @@ const DataTable = ({
                             ))}
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
+                    <tbody className="divide-y divide-line">
                         <AnimatePresence mode="popLayout">
                             {paginatedData.map((row, idx) => (
                                 <motion.tr 
@@ -116,10 +116,10 @@ const DataTable = ({
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-colors"
+                                    className="hover:bg-surface-2/60 transition-colors"
                                 >
                                     {columns.map((col) => (
-                                        <td key={col.key} className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                                        <td key={col.key} className="px-6 py-4 text-[13px] text-ink-soft">
                                             {col.render ? col.render(row[col.key], row) : row[col.key]}
                                         </td>
                                     ))}
@@ -130,7 +130,7 @@ const DataTable = ({
                 </table>
                 
                 {filteredData.length === 0 && (
-                    <div className="py-12 text-center text-gray-500">
+                    <div className="py-12 text-center text-sm text-ink-soft">
                         No results found for "{searchTerm}"
                     </div>
                 )}
@@ -138,24 +138,24 @@ const DataTable = ({
 
             {/* Pagination */}
             {paginated && filteredData.length > pageSize && (
-                <div className="p-4 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
-                    <p className="text-sm text-gray-500">
-                        Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredData.length)} of {filteredData.length}
+                <div className="p-4 border-t border-line flex items-center justify-between">
+                    <p className="text-xs text-ink-soft">
+                        Showing {((currentPage - 1) * pageSize) + 1}–{Math.min(currentPage * pageSize, filteredData.length)} of {filteredData.length}
                     </p>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5">
                         <button
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage(prev => prev - 1)}
-                            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                            className="grid h-8 w-8 place-items-center rounded-full border border-line text-ink-soft hover:border-line-strong hover:text-ink disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                         >
-                            <ChevronLeft size={18} />
+                            <ChevronLeft size={15} />
                         </button>
                         <button
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage(prev => prev + 1)}
-                            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                            className="grid h-8 w-8 place-items-center rounded-full border border-line text-ink-soft hover:border-line-strong hover:text-ink disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                         >
-                            <ChevronRight size={18} />
+                            <ChevronRight size={15} />
                         </button>
                     </div>
                 </div>

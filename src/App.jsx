@@ -26,18 +26,18 @@ function App() {
 
 
   return (
-    <UIProvider plugins={[DemoPlugin]}>
-      <CustomCursor style={cursorStyle} />
-      <Router>
-        <div className="bg-white dark:bg-gray-950 min-h-screen transition-colors duration-300">
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/components" element={<TestingUI />} />
-            <Route path="/developer" element={<DeveloperPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </UIProvider>
+    <ThemeProvider>
+      <ToastProvider>
+        <Router>
+          <div className="min-h-screen bg-paper text-ink transition-colors duration-300">
+            <Routes>
+              <Route path="/" element={<TestingUI />} />
+              <Route path="/developer" element={<DeveloperPage />} />
+            </Routes>
+          </div>
+        </Router>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 

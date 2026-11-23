@@ -21,7 +21,7 @@ const Switch = ({
     };
 
     const variants = {
-        primary: 'bg-blue-600',
+        primary: 'bg-accent',
         success: 'bg-emerald-600',
         danger: 'bg-red-600',
     };
@@ -42,9 +42,9 @@ const Switch = ({
                 <div
                     className={`
             ${sizes[size].track} 
-            rounded-full transition-colors duration-300 ease-in-out
-            ${checked ? variants[variant] : 'bg-gray-200 dark:bg-gray-700'}
-            group-hover:ring-4 ring-blue-500/10
+            rounded-full transition-colors duration-300 ease-out
+            ${checked ? variants[variant] : 'bg-line-strong'}
+            group-hover:ring-4 ring-accent-soft
           `}
                 />
 
@@ -53,15 +53,15 @@ const Switch = ({
                     className={`
             ${sizes[size].thumb}
             absolute left-1 top-1
-            bg-white rounded-full 
-            shadow-md transition-transform duration-300 ease-in-out
+            bg-paper rounded-full 
+            shadow-sm transition-transform duration-300 ease-out
             ${checked ? sizes[size].translate : 'translate-x-0'}
           `}
                 />
             </div>
 
             {label && (
-                <span className="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                <span className="ml-3 text-[13px] font-medium text-ink-soft">
                     {label}
                 </span>
             )}
